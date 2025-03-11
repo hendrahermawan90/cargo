@@ -148,6 +148,9 @@
                 <a class="nav-link" href="#"><i class="fas fa-users"></i> Customers</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/vendors"><i class="fas fa-truck"></i> Vendors</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-file-invoice"></i> Reports</a>
             </li>
             <li class="nav-item">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\VendorController;
 
 // Halaman utama atau welcome
 Route::get('/', function () {
@@ -26,4 +27,6 @@ Route::get('/dashboard', function () {
 // Rute untuk shipments hanya bisa diakses oleh pengguna yang sudah login
 Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
+    Route::resource('vendors', VendorController::class);
 });
+
