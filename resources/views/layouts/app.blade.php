@@ -158,7 +158,7 @@
 
     /* Footer styling */
     footer {
-        background-color: #2c3e50;
+        background-color:rgb(42, 46, 49);
         color: #ecf0f1;
         padding: 20px;
         margin-top: auto; /* Push the footer to the bottom */
