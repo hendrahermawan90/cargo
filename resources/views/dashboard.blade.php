@@ -131,7 +131,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="text-center mb-4">
-            <img src="https://via.placeholder.com/150" alt="Logo" class="rounded-circle" style="width: 100px;">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" class="" style="width: 100px;">
             <h5 class="text-white mt-3">Cargo System</h5>
         </div>
         <ul class="nav flex-column">
