@@ -26,7 +26,6 @@
                     <th>Status</th>
                     <th>Company Code</th>
                     <th>Status (Active/Inactive)</th>
-                    <th>Is Deleted</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -41,7 +40,6 @@
                         <td>{{ ucfirst($order->order_status) }}</td>
                         <td>{{ $order->CompanyCode ?? 'N/A' }}</td>
                         <td>{{ $order->Status == 1 ? 'Active' : 'Inactive' }}</td>
-                        <td>{{ $order->IsDeleted == 1 ? 'Yes' : 'No' }}</td>
                         <td>
                             <!-- Tombol Show untuk melihat detail order -->
                             <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">Show</a>
