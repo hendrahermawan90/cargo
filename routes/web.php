@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController; // Tambahkan import untuk OrderController
 
 // Halaman utama atau welcome
 Route::get('/', function () {
@@ -28,5 +30,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
     Route::resource('vendors', VendorController::class);
-});
+    Route::resource('customers', CustomerController::class);
 
+    // Tambahkan rute untuk order (Orders)
+    Route::resource('orders', OrderController::class); // Menambahkan resource route untuk Order
+});

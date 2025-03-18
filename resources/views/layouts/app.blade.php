@@ -184,7 +184,10 @@
                 <a class="nav-link" href="#"><i class="fas fa-truck"></i> Tracking</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-users"></i> Customers</a>
+                <a class="nav-link" href="/customers"><i class="fas fa-users"></i> Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/orders"><i class="fas fa-users"></i> Orders</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/vendors"><i class="fas fa-truck"></i> Vendors</a>
