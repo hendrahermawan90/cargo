@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Shipments
-                            <a href="{{ route('shipments.create') }}" class="btn btn-primary float-end">Add New Shipment</a>
+                        <h4>Customers
+                            <a href="{{ route('customers.create') }}" class="btn btn-primary float-end">Add New Customer</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -20,28 +20,28 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Tracking Number</th>
-                                    <th>Sender</th>
-                                    <th>Receiver</th>
-                                    <th>Weight</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($shipments as $shipment)
+                                @foreach ($customers as $customer)
                                     <tr>
-                                        <td>{{ $shipment->tracking_number }}</td>
-                                        <td>{{ $shipment->sender_name }}</td>
-                                        <td>{{ $shipment->receiver_name }}</td>
-                                        <td>{{ $shipment->weight }} kg</td>
-                                        <td>{{ $shipment->status }}</td>
+                                        <td>{{ $customer->name }}</td>
+                                        <td>{{ $customer->email }}</td>
+                                        <td>{{ $customer->phone }}</td>
+                                        <td>{{ $customer->address }}</td>
+                                        <td>{{ $customer->Status == 1 ? 'Active' : 'Inactive' }}</td>
                                         <td>
-                                            <a href="{{ route('shipments.show', $shipment->id) }}"
+                                            <a href="{{ route('customers.show', $customer->id) }}"
                                                 class="btn btn-info btn-sm">View</a>
-                                            <a href="{{ route('shipments.edit', $shipment->id) }}"
+                                            <a href="{{ route('customers.edit', $customer->id) }}"
                                                 class="btn btn-primary btn-sm">Edit</a>
-                                            <form action="{{ route('shipments.destroy', $shipment->id) }}" method="POST"
+                                            <form action="{{ route('customers.destroy', $customer->id) }}" method="POST"
                                                 style="display:inline">
                                                 @csrf
                                                 @method('DELETE')
@@ -53,11 +53,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $shipments->links() }}
+                        {{ $customers->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
- 

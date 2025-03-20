@@ -30,7 +30,7 @@ class ShipmentController extends Controller
         ]);
 
         $shipment = new Shipment($request->all());
-        $shipment->tracking_number = 'SHP-' . Str::random(10);
+        $shipment->tracking_number = 'SHP-' . strtoupper(Str::random(10));
         $shipment->save();
 
         return redirect()->route('shipments.index')
