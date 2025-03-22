@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\ReportController;
 
 // Halaman utama atau welcome
 Route::get('/', function () {
@@ -27,11 +28,21 @@ Route::get('/dashboard', function () {
 // Rute untuk shipments hanya bisa diakses oleh pengguna yang sudah login
 Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
+
+    Route::get('/shipments', [ShipmentController::class, 'index'])
+    ->middleware('auth') // Opsional: Batasi akses hanya untuk user yang login
+    ->name('shipments.index');
 });
 
-// Rute untuk tracking
-Route::get('/track', [TrackingController::class, 'track'])->name('track'); // Form tracking
+// Route untuk halaman form tracking
+Route::get('/track', function () {
+    return view('tracking.form');
+})->name('track');
 
-Route::get('/tracking/{tracking_number}', [TrackingController::class, 'track'])->name('tracking.track');
+// Route untuk menampilkan daftar tracking
+Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
 
-Route::post('/track/update', [TrackingController::class, 'updateTracking']); // Update tracking
+// Route untuk menampilkan detail tracking berdasarkan nomor tracking
+Route::get('/tracking/{tracking_number}', [TrackingController::class, 'show'])->name('tracking.show');
+
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');

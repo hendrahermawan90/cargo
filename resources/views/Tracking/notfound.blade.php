@@ -1,14 +1,12 @@
-<!-- filepath: resources/views/tracking/notfound.blade.php -->
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Tracking Not Found</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Tidak Ditemukan</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Tracking Not Found</h1>
-        <p>{{ $message }}</p>
-    </div>
+    <h2>Nomor Tracking Tidak Ditemukan</h2>
+    <a href="{{ route('track') }}">Coba Lagi</a>
 </body>
 </html>

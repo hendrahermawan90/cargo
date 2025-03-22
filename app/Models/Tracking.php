@@ -9,17 +9,14 @@ class Tracking extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tracking_number', 'order_id', 'status'];
+    protected $fillable = [
+        'tracking_number',
+        'order_id',
+        'status',
+    ];
 
-    // Relasi ke TrackingHistory (jika ada riwayat status)
-    public function history()
+    public function order()
     {
-        return $this->hasMany(TrackingHistory::class);
-    }
-
-    // Relasi ke User (jika tracking terkait dengan user tertentu)
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Order::class);
     }
 }
