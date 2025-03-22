@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\TrackingController;
 
 // Halaman utama atau welcome
 Route::get('/', function () {
@@ -27,3 +28,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
 });
+
+// Rute untuk tracking
+Route::get('/track', [TrackingController::class, 'track'])->name('track'); // Form tracking
+
+Route::get('/tracking/{tracking_number}', [TrackingController::class, 'track'])->name('tracking.track');
+
+Route::post('/track/update', [TrackingController::class, 'updateTracking']); // Update tracking
