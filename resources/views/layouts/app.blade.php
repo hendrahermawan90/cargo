@@ -187,7 +187,7 @@
                 <a class="nav-link" href="#"><i class="fas fa-users"></i> Customers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-file-invoice"></i> Reports</a>
+                <a class="nav-link" href="{{ route('reports.index') }}">Reports</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
