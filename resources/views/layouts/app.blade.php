@@ -156,13 +156,7 @@
         flex: 1; /* This ensures main content grows to fill available space */
     }
 
-    /* Footer styling */
-    footer {
-        background-color:rgb(42, 46, 49);
-        color: #ecf0f1;
-        padding: 20px;
-        margin-top: auto; /* Push the footer to the bottom */
-    }
+    
     </style>
 </head>
 
@@ -249,7 +243,6 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <hr class="my-4">
             <div class="text-center">
                 <p class="mb-0">&copy; 2024 Cargo Express. All rights reserved.</p>
             </div>
