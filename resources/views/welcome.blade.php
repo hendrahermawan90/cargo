@@ -135,7 +135,7 @@
 
 <style>
     .navbar-custom {
-        background-color: #0044cc; /* Warna biru khusus */
+        background-color: #0044cc; /* Wairu khusus */
     }
 
     .navbar-brand span {
