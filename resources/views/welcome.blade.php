@@ -270,21 +270,7 @@
         </div>
     </section>
 
-    <!-- Tentang Kami Section -->
-<section id="tentang-kami" class="bg-blue py-16">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8" data-aos="fade-zoom-in">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold text-blue-600 mb-6">About Us</h2>
-                    <p class="text-gray-700 text-lg leading-relaxed">
-                    Cargo Express is a trusted logistics partner that provides fast, safe, and affordable shipping solutions. With a wide network and experienced team, we are committed to providing door-to-door cargo services with real-time tracking technology to ensure timely delivery throughout Indonesia and internationally.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    
         
     <!-- Image Section -->
     <div class="image-section mt-3" data-aos="fade-up">
