@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.5.1.js"></script>
+
     <style>
         /* Sidebar Styling */
         .sidebar {
@@ -163,6 +166,7 @@
         padding: 20px;
         margin-top: auto; /* Push the footer to the bottom */
     }
+
     </style>
 </head>
 
@@ -170,7 +174,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="text-center mb-4">
-            <img src="https://via.placeholder.com/150" alt="Logo" class="rounded-circle" style="width: 100px;">
+            <img src="https://png.pngtree.com/png-clipart/20220705/ourlarge/pngtree-courier-character-delivery-service-png-image_5683887.png" alt="Logo" class="rounded-circle" style="width: 100px;">
             <h5 class="text-white mt-3">Cargo System</h5>
         </div>
         <ul class="nav flex-column">
@@ -179,6 +183,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/shipments"><i class="fas fa-box"></i> Shipments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-door"></i> Checkout</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-truck"></i> Tracking</a>
@@ -192,9 +199,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </li>
+           
         </ul>
     </div>
 
@@ -237,6 +242,8 @@
     <!-- Main Content Section -->
     <div class="main-content">
         @yield('content')
+        <!-- 3D Model Container -->
+        <div class="model-container" id="model-container"></div>
     </div>
 
     <!-- Footer -->
@@ -250,7 +257,24 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sketchfab Viewer API integration
+        var iframe = document.getElementById('model-container');
+        var client = new Sketchfab('1.5.1', iframe);
+        var modelUid = 'https://cdn.pixabay.com/photo/2024/05/28/14/15/ai-generated-8793863_1280.jpg';
+
+        client.init(modelUid, {
+            success: function onSuccess(api) {
+                api.start();
+                api.addEventListener('viewerready', function() {
+                    console.log('Viewer is ready');
+                });
+            },
+            error: function onError() {
+                console.log('Viewer error');
+            }
+        });
+    </script>
 </body>
-<!-- tesss -->
 
 </html>

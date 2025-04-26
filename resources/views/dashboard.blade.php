@@ -11,7 +11,7 @@
         /* Sidebar Styling */
         .sidebar {
             height: 100vh;
-            background-color: #2c3e50;
+            background-color:rgb(0, 64, 255); 
             padding-top: 20px;
             position: fixed;
             left: 0;
@@ -28,7 +28,7 @@
         }
 
         .sidebar .nav-link:hover {
-            background-color: #34495e;
+            background-color:rgb(254, 10, 10);
             padding-left: 30px;
         }
 
@@ -46,8 +46,8 @@
         /* Navbar Styling */
         .navbar {
             margin-left: 250px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: ##fe780a;
+            box-shadow: 0 2px 5px rgba(0, 64, 255);
             padding: 10px 20px;
         }
 
@@ -55,7 +55,7 @@
         .card-dashboard {
             border: none;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px #001aff;
             transition: transform 0.3s ease;
         }
 
@@ -65,7 +65,7 @@
 
         .stat-icon {
             font-size: 2.5rem;
-            color: #3498db;
+            color:rgb(0, 26, 255);
         }
 
         /* Status Styling */
@@ -83,14 +83,14 @@
 
         /* Footer Styling */
         footer {
-            background-color: #2c3e50;
-            color: #ecf0f1;
+            background-color:#001aff;
+            color:#ecf0f1;
             padding: 20px;
             margin-top: auto;
         }
 
         footer a {
-            color: #ecf0f1;
+            color: #001aff;;
         }
 
         footer a:hover {
@@ -124,6 +124,14 @@
                 margin-left: 0;
             }
         }
+
+        /* Image Styling */
+        .courier-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+        }
     </style>
 </head>
 
@@ -131,33 +139,53 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="text-center mb-4">
-            <img src="https://via.placeholder.com/150" alt="Logo" class="rounded-circle" style="width: 100px;">
+            <img src="https://png.pngtree.com/png-clipart/20220705/ourlarge/pngtree-courier-character-delivery-service-png-image_5683887.png" alt="Logo" class="rounded-circle" style="width: 100px;">
             <h5 class="text-white mt-3">Cargo System</h5>
         </div>
         <ul class="nav flex-column">
+            <!-- Dashboard -->
             <li class="nav-item">
                 <a class="nav-link active" href="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
             </li>
+            
+            <!-- Shipments -->
             <li class="nav-item">
                 <a class="nav-link" href="/shipments"><i class="fas fa-box"></i> Shipments</a>
             </li>
+                
+            
+            <!-- Tracking -->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-truck"></i> Tracking</a>
             </li>
+            
+            <!-- Customers -->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-users"></i> Customers</a>
             </li>
+            
+            <!-- Reports -->
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-file-invoice"></i> Reports</a>
             </li>
+            
+            <!-- Settings -->
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+                <a class="nav-link" href="/settings"><i class="fas fa-cog"></i> Settings</a>
             </li>
+            
+            <!-- Logout -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </li>
+            
+            <!-- Masuk -->
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-door"></i> Masuk</a>
+            </li>
         </ul>
     </div>
+</body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -197,6 +225,7 @@
 
     <!-- Main Content -->
     <div class="main-content">
+
         <!-- Statistics Cards -->
         <div class="row mb-4">
             <div class="col-md-3">
@@ -316,4 +345,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>
+</html> 
