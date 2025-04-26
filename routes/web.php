@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\GoogleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShipmentController;
+use Laravel\Socialite\Facades\Socialite;
 
 // Halaman utama atau welcome
 Route::get('/', function () {
@@ -27,3 +29,23 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
 });
+
+
+
+Route::get('auth/google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('auth/google/callback', function () {
+    $user = Socialite::driver('google')->user();
+    
+    // Cek data user
+    dd($user);
+
+    // Biasanya di sini kamu buat login otomatis
+});
+
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])
+    ->name('login.google');
+
+Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
