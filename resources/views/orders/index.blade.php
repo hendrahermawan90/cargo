@@ -47,11 +47,13 @@
                                         <td>
                                             <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">View</a>
                                             <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                            <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                            </form>
+                                            <button type="button"
+                                                    class="btn btn-danger btn-sm"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#confirmDeleteModal"
+                                                    data-id="{{ $order->id }}">
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -65,4 +67,42 @@
             </div>
         </div>
     </div>
+
+     <!-- Modal Konfirmasi Delete -->
+     <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin menghapus data order ini?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+
+            <script>
+                const deleteModal = document.getElementById('confirmDeleteModal');
+                deleteModal.addEventListener('show.bs.modal', function (event) {
+                    const button = event.relatedTarget;
+                    const orderId = button.getAttribute('data-id');
+                    const form = document.getElementById('deleteForm');
+                    form.action = '/orders/' + orderId;
+                });
+            </script>
+
+
+<!-- Bootstrap JS + Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 @endsection

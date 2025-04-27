@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Tambahkan di bagian <head> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- Tambahkan sebelum </body> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         /* Sidebar Styling */
         .sidebar {
@@ -120,7 +126,7 @@
 <!-- Sidebar -->
 <div class="sidebar">
         <div class="text-center mb-4">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="width: 80px;">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="width: 100px;">
             <h5 class="mt-2">Cargo Express</h5>
         </div>
     <ul class="nav flex-column">
@@ -186,6 +192,34 @@
     <!-- Main Content Section -->
     <div class="main-content">
         @yield('content')
+
+                @if (session('success'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses!',
+                                text: '{{ session('success') }}',
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        });
+                    </script>
+                 @endif
+
+                 @if (session('error'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: '{{ session('error') }}',
+                            });
+                        });
+                    </script>
+                @endif
+
+
     </div>
 
     <!-- Footer -->

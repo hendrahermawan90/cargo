@@ -120,7 +120,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="text-center mb-4">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="width: 80px;">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="width: 100px;">
             <h5 class="mt-2">Cargo Express</h5>
         </div>
 <ul class="nav flex-column">
@@ -135,7 +135,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="/tracking">
+        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="#">
             <i class="fas fa-truck"></i> Tracking
         </a>
     </li>
@@ -155,12 +155,12 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="/reports">
+        <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="#">
             <i class="fas fa-file-invoice"></i> Reports
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="/settings">
+        <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="#">
             <i class="fas fa-cog"></i> Settings
         </a>
     </li>

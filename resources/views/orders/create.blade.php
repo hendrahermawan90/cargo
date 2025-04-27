@@ -53,7 +53,7 @@
 
                                     <div class="mb-3">
                                         <label for="origin" class="form-label">Origin</label>
-                                        <input type="text" name="origin" id="origin" class="form-control @error('origin') is-invalid @enderror" value="{{ old('origin') }}">
+                                        <input type="text" name="origin" id="origin" class="form-control @error('origin') is-invalid @enderror" value="{{ old('origin') }}"required>
                                         @error('origin')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -61,7 +61,7 @@
 
                                     <div class="mb-3">
                                         <label for="destination" class="form-label">Destination</label>
-                                        <input type="text" name="destination" id="destination" class="form-control @error('destination') is-invalid @enderror" value="{{ old('destination') }}">
+                                        <input type="text" name="destination" id="destination" class="form-control @error('destination') is-invalid @enderror" value="{{ old('destination') }}" required>
                                         @error('destination')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -75,7 +75,7 @@
 
                                     <div class="mb-3">
                                         <label for="weight" class="form-label">Weight</label>
-                                        <input type="number" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}" step="any">
+                                        <input type="number" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}" step="any" required>
                                         @error('weight')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
