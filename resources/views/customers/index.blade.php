@@ -11,15 +11,18 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        @if (session('success'))
+                        <!-- Menampilkan pesan success jika ada -->
+                        @if(session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
                         @endif
 
-                        <table class="table">
+                        <!-- Tabel Daftar Customers -->
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th>No</th> <!-- Kolom No ditambahkan -->
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -29,30 +32,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($customers as $customer)
+                                @foreach ($customers as $index => $customer)
                                     <tr>
+                                        <td>{{ $index + 1 }}</td> <!-- Menampilkan nomor urut -->
                                         <td>{{ $customer->name }}</td>
                                         <td>{{ $customer->email }}</td>
                                         <td>{{ $customer->phone }}</td>
                                         <td>{{ $customer->address }}</td>
                                         <td>{{ $customer->Status == 1 ? 'Active' : 'Inactive' }}</td>
                                         <td>
-                                            <a href="{{ route('customers.show', $customer->id) }}"
-                                                class="btn btn-info btn-sm">View</a>
-                                            <a href="{{ route('customers.edit', $customer->id) }}"
-                                                class="btn btn-primary btn-sm">Edit</a>
-                                            <form action="{{ route('customers.destroy', $customer->id) }}" method="POST"
-                                                style="display:inline">
+                                            <a href="{{ route('customers.show', $customer->id) }}" class="btn btn-info btn-sm">View</a>
+                                            <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure?')">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+
+                        <!-- Pagination -->
                         {{ $customers->links() }}
                     </div>
                 </div>
