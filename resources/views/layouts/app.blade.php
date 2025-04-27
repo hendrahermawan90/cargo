@@ -2,8 +2,8 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <title>Cargo Dashboard</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -11,25 +11,27 @@
         /* Sidebar Styling */
         .sidebar {
             height: 100vh;
-            background-color: #2c3e50;
-            padding-top: 20px;
+            background: linear-gradient(180deg, #2c3e50, #34495e);
             position: fixed;
             left: 0;
             width: 250px;
+            color: #ecf0f1;
+            padding-top: 20px;
         }
 
         .sidebar .nav-link {
             color: #ecf0f1;
             padding: 15px 20px;
-            margin: 5px 0;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, padding-left 0.3s ease;
+            margin: 5px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
-        .sidebar .nav-link:hover {
-            background-color: #34495e;
-            padding-left: 30px;
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: #1abc9c;
+            color: #fff;
+            transform: scale(1.05);
         }
 
         .sidebar .nav-link i {
@@ -38,42 +40,22 @@
 
         .main-content {
             margin-left: 250px;
-            padding: 20px;
-            transition: margin-left 0.3s ease;
+            padding: 30px;
+            background: #f4f6f9;
+            min-height: 100vh;
         }
 
         .navbar {
             margin-left: 250px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 10px 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
-        /* Hero Section Styling */
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 120px 0;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .hero-section .btn {
-            font-size: 1.1rem;
-            padding: 10px 30px;
-            margin-top: 20px;
-        }
-
-        /* Card Styling */
         .card-dashboard {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
 
@@ -81,157 +63,123 @@
             transform: translateY(-5px);
         }
 
-        /* Status Styling */
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+        }
+
+        .table .badge {
+            font-size: 0.85rem;
+            padding: 5px 10px;
+        }
+
         .status-delivered {
-            color: #27ae60;
+            background-color: #2ecc71;
         }
 
         .status-transit {
-            color: #f39c12;
+            background-color: #f1c40f;
         }
 
         .status-pending {
-            color: #e74c3c;
+            background-color: #e74c3c;
         }
 
-        /* Footer Styling */
         footer {
             background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
+            color: #bdc3c7;
+            padding: 20px 0;
+            margin-top: 40px;
         }
 
         footer a {
-            color: #ecf0f1;
+            color: #bdc3c7;
         }
 
         footer a:hover {
+            color: #ffffff;
             text-decoration: underline;
         }
 
-        /* Table Styling */
-        .tracking-table th,
-        .tracking-table td {
-            padding: 12px 15px;
-        }
-
-        /* Custom Button Hover */
-        .btn-custom {
-            background-color: #3498db;
-            color: #fff;
-            border-radius: 50px;
-            transition: background-color 0.3s;
-        }
-
-        .btn-custom:hover {
-            background-color: #2980b9;
-        }
-
-        /* Adjust for smaller screens */
         @media (max-width: 767px) {
             .sidebar {
                 width: 100%;
-                position: relative;
                 height: auto;
+                position: relative;
             }
 
-            .main-content {
-                margin-left: 0;
-            }
-
+            .main-content,
             .navbar {
                 margin-left: 0;
             }
         }
-
-        /* Body styling to ensure the footer stays at the bottom */
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Ensure body takes at least 100% of the viewport height */
-    }
-
-    /* Main content should take available space */
-    .main-content {
-        flex: 1; /* This ensures main content grows to fill available space */
-    }
-
-    
     </style>
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
+<!-- Sidebar -->
+<div class="sidebar">
         <div class="text-center mb-4">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" class="" style="width: 100px;">
-            <h5 class="text-white mt-3">Cargo System</h5>
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="width: 80px;">
+            <h5 class="mt-2">Cargo Express</h5>
         </div>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/shipments"><i class="fas fa-box"></i> Shipments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-truck"></i> Tracking</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/customers"><i class="fas fa-users"></i> Customers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/orders"><i class="fas fa-users"></i> Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/vendors"><i class="fas fa-truck"></i> Vendors</a>
-            </li>
+    <ul class="nav flex-column">
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="/dashboard">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('shipments*') ? 'active' : '' }}" href="/shipments">
+            <i class="fas fa-box"></i> Shipments
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="#">
+            <i class="fas fa-truck"></i> Tracking
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('customers*') ? 'active' : '' }}" href="/customers">
+            <i class="fas fa-users"></i> Customers
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('orders*') ? 'active' : '' }}" href="/orders">
+            <i class="fas fa-file-alt"></i> Orders
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('vendors*') ? 'active' : '' }}" href="/vendors">
+            <i class="fas fa-store"></i> Vendors
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="#">
+            <i class="fas fa-file-invoice"></i> Reports
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="#">
+            <i class="fas fa-cog"></i> Settings
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('logout') }}">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </li>
+    </ul>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-file-invoice"></i> Reports</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </li>
-        </ul>
-    </div>
+</div>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="#">Cargo Express</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tracking">Track Shipment</a>
-                    </li>
-                    @if (Route::has('login'))
-                        @auth
-                            <li class="nav-item">
-                                <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a href="{{ route('login') }}" class="nav-link">Login</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="nav-link">Register</a>
-                                </li>
-                            @endif
-                        @endauth
-                    @endif
-                </ul>
-            </div>
         </div>
     </nav>
 
