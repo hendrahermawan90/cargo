@@ -20,7 +20,7 @@ class CustomerController extends Controller
         return view('customers.create'); // Menampilkan form untuk membuat customer baru
     }
 
-    // Menyimpan data pelanggan baru
+    // Untuk store
     public function store(Request $request)
     {
         $request->validate([
@@ -30,7 +30,7 @@ class CustomerController extends Controller
             'address' => 'nullable|string',
             'CompanyCode' => 'nullable|string|max:20',
             'Status' => 'required|in:0,1',  // Validasi untuk Status
-            'IsDeleted' => 'required|in:0,1', // Validasi untuk IsDeleted
+            // 'IsDeleted' tidak diperlukan, jadi kita bisa menghapus baris validasi ini
         ]);
 
         // Menyimpan data pelanggan baru
@@ -41,15 +41,16 @@ class CustomerController extends Controller
             'address' => $request->address,
             'CompanyCode' => $request->CompanyCode,
             'Status' => $request->Status,
-            'IsDeleted' => $request->IsDeleted,
-            'CreatedBy' => auth()->user()->name,  // Mengambil nama user yang login
-            'CreatedDate' => now(),  // Waktu saat ini
-            'LastUpdatedBy' => auth()->user()->name, // Mengambil nama user yang login
-            'LastUpdatedDate' => now(), // Waktu saat ini
+            'IsDeleted' => $request->IsDeleted ?? 0,  // Nilai default 0 jika tidak ada nilai
+            'CreatedBy' => auth()->user()->name,
+            'CreatedDate' => now(),
+            'LastUpdatedBy' => auth()->user()->name,
+            'LastUpdatedDate' => now(),
         ]);
 
         return redirect()->route('customers.index')->with('success', 'Customer created successfully');
     }
+
 
     // Menampilkan form untuk mengedit data pelanggan
     public function edit($id)
@@ -58,17 +59,17 @@ class CustomerController extends Controller
         return view('customers.edit', compact('customer')); // Menampilkan form edit
     }
 
-    // Memperbarui data pelanggan
+        // Untuk update
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:customers,email,' . $id, // Pengecualian untuk pelanggan yang sedang diedit
+            'email' => 'required|email|unique:customers,email,' . $id,  // Pengecualian untuk pelanggan yang sedang diedit
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
             'CompanyCode' => 'nullable|string|max:20',
             'Status' => 'required|in:0,1',
-            'IsDeleted' => 'required|in:0,1',
+            // 'IsDeleted' tidak diperlukan, jadi kita bisa menghapus baris validasi ini
         ]);
 
         // Memperbarui data pelanggan
@@ -80,9 +81,9 @@ class CustomerController extends Controller
             'address' => $request->address,
             'CompanyCode' => $request->CompanyCode,
             'Status' => $request->Status,
-            'IsDeleted' => $request->IsDeleted,
-            'LastUpdatedBy' => auth()->user()->name, // Mengambil nama user yang login
-            'LastUpdatedDate' => now(), // Waktu saat ini
+            'IsDeleted' => $request->IsDeleted ?? 0,  // Nilai default 0 jika tidak ada nilai
+            'LastUpdatedBy' => auth()->user()->name,
+            'LastUpdatedDate' => now(),
         ]);
 
         return redirect()->route('customers.index')->with('success', 'Customer updated successfully');

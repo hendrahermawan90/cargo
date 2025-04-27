@@ -29,8 +29,8 @@ class OrderController extends Controller
             'price' => 'required|numeric',
             'order_status' => 'required|in:pending,paid,shipped,delivered,cancelled',
             'CompanyCode' => 'nullable|string|max:20',
-            'Status' => 'required|in:0,1',
-            'IsDeleted' => 'required|in:0,1',
+            // 'Status' => 'required|in:0,1',
+            //'IsDeleted' => 'required|in:0,1',
         ]);
 
         // Simpan order baru
@@ -43,8 +43,8 @@ class OrderController extends Controller
             'price' => $request->price,
             'order_status' => $request->order_status,
             'CompanyCode' => $request->CompanyCode,
-            'Status' => $request->Status,
-            'IsDeleted' => $request->IsDeleted,
+            // 'Status' => $request->Status,
+            'IsDeleted' => $request->IsDeleted ?? 0,
             'CreatedBy' => Auth::user()->name,
             'CreatedDate' => now(),
             'LastUpdatedBy' => Auth::user()->name,
@@ -91,8 +91,8 @@ class OrderController extends Controller
             'price' => 'required|numeric',
             'order_status' => 'required|in:pending,paid,shipped,delivered,cancelled',
             'CompanyCode' => 'nullable|string|max:20',
-            'Status' => 'required|in:0,1',
-            'IsDeleted' => 'required|in:0,1',
+            // 'Status' => 'required|in:0,1',
+            // 'IsDeleted' => 'required|in:0,1',
         ]);
 
         // Cari dan update order berdasarkan ID
@@ -106,8 +106,8 @@ class OrderController extends Controller
             'price' => $request->price,
             'order_status' => $request->order_status,
             'CompanyCode' => $request->CompanyCode,
-            'Status' => $request->Status,
-            'IsDeleted' => $request->IsDeleted,
+            // 'Status' => $request->Status,
+            'IsDeleted' => $request->IsDeleted ?? 0,
             'LastUpdatedBy' => Auth::user()->name,
             'LastUpdatedDate' => now(),
         ]);
