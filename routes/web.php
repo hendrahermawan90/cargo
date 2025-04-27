@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShipmentController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CustomerController;
 
 // Halaman utama atau welcome
 Route::get('/', function () {
@@ -49,3 +51,17 @@ Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])
     ->name('login.google');
 
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
+Route::middleware('auth')->group(function () {
+    Route::resource('shipments', ShipmentController::class);
+    Route::resource('orders', OrderController::class); // Tambahkan ini
+});
+
+
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index')->middleware(['web', 'auth']);
+
+
+Route::middleware('auth')->group(function () {
+    Route::resource('customers', CustomerController::class);
+});
