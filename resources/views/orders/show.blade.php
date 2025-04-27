@@ -53,10 +53,10 @@
                                 <th class="text-muted">🏢 Company Code</th>
                                 <td>{{ $order->CompanyCode ?? 'N/A' }}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th class="text-muted">🗑️ Is Deleted</th>
                                 <td>{{ $order->IsDeleted == 1 ? 'Yes' : 'No' }}</td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <th class="text-muted">👤 Created By</th>
                                 <td>{{ $order->CreatedBy }}</td>

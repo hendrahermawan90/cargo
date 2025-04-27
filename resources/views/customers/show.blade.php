@@ -47,10 +47,10 @@
                                 <th class="text-muted">🏢 Company Code</th>
                                 <td>{{ $customer->CompanyCode ?? 'N/A' }}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th class="text-muted">🗑️ Is Deleted</th>
                                 <td>{{ $customer->IsDeleted == 1 ? 'Yes' : 'No' }}</td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <th class="text-muted">👤 Created By</th>
                                 <td>{{ $customer->CreatedBy }}</td>
