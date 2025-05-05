@@ -14,7 +14,7 @@
             background: linear-gradient(180deg, #2c3e50, #34495e);
             position: fixed;
             left: 0;
-            width: 250px;
+            width: 230px;
             color: #ecf0f1;
             padding-top: 20px;
         }
