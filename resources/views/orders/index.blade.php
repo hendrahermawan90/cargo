@@ -4,10 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
+                <div class="card shadow-lg rounded">
+                    <div class="card-header bg-primary text-white">
                         <h4>Orders
-                            <a href="{{ route('orders.create') }}" class="btn btn-primary float-end">Add New Order</a>
+                            <a href="{{ route('orders.create') }}" class="btn btn-dark btn-success float-end">Add New Order</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -19,8 +19,8 @@
                         @endif
 
                         <!-- Tabel Daftar Orders -->
-                        <table class="table table-bordered">
-                            <thead>
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
                                     <th>Tracking Number</th>
@@ -29,7 +29,6 @@
                                     <th>Destination</th>
                                     <th>Status</th>
                                     <th>Company Code</th>
-                                    <!-- <th>Status (Active/Inactive)</th> -->
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -43,7 +42,6 @@
                                         <td>{{ $order->destination }}</td>
                                         <td>{{ ucfirst($order->order_status) }}</td>
                                         <td>{{ $order->CompanyCode ?? 'N/A' }}</td>
-                                        <!-- <td>{{ $order->Status == 1 ? 'Active' : 'Inactive' }}</td> -->
                                         <td>
                                             <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">View</a>
                                             <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary btn-sm">Edit</a>
@@ -59,7 +57,9 @@
                         </table>
 
                         <!-- Pagination -->
-                        {{ $orders->links() }}
+                        <div class="d-flex justify-content-center">
+                            {{ $orders->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

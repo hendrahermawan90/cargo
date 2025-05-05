@@ -11,11 +11,12 @@
         /* Sidebar Styling */
         .sidebar {
             height: 100vh;
-            background-color: #2c3e50;
+            background: linear-gradient(180deg,rgba(0, 0, 0, 0.71), #2980b9); /* Background gradien kustom */
             padding-top: 20px;
             position: fixed;
             left: 0;
             width: 250px;
+            color: var(--text-light); /* Warna teks tetap gelap */
         }
 
         .sidebar .nav-link {

@@ -20,7 +20,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'tracking_number' => 'required|string|max:255',
             'origin' => 'required|string',

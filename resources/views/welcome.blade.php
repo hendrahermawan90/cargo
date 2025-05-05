@@ -45,45 +45,117 @@
         .service-card:hover {
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+
+        body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+body.dark-mode .navbar {
+    background-color: #1f1f1f !important;
+    color: #ffffff;
+}
+
+body.dark-mode .nav-link,
+body.dark-mode .navbar-brand {
+    color: #ffffff !important;
+}
+
+body.dark-mode .hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+}
+
+body.dark-mode .feature-box {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+}
+
+body.dark-mode .feature-icon {
+    color: #0d6efd;
+}
+
+body.dark-mode .tracking-section {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode .card {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+body.dark-mode .btn-outline-light {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+body.dark-mode .service-card {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: 1px solid #333;
+}
+
+body.dark-mode footer {
+    background-color: #1f1f1f;
+    color: #f1f1f1;
+}
+
+body.dark-mode footer a {
+    color: #f1f1f1;
+}
     </style>
 </head>
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Cargo Express</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tracking">Track Shipment</a>
-                    </li>
-                    @if (Route::has('login'))
-                        @auth
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cargo Express</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tracking">Track Shipment</a>
+                </li>
+                @if (Route::has('login'))
+                    @auth
+                        <li class="nav-item">
+                            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link">Login</a>
+                        </li>
+                        @if (Route::has('register'))
                             <li class="nav-item">
-                                <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                                <a href="{{ route('register') }}" class="nav-link">Register</a>
                             </li>
-                        @else
-                            <li class="nav-item">
-                                <a href="{{ route('login') }}" class="nav-link">Login</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="nav-link">Register</a>
-                                </li>
-                            @endif
-                        @endauth
-                    @endif
-                </ul>
+                        @endif
+                    @endauth
+                @endif
+            </ul>
+
+            <!-- Dark mode switch -->
+            <div class="form-check form-switch ms-3">
+                <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -219,6 +291,23 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    const toggleSwitch = document.getElementById('darkModeSwitch');
+    toggleSwitch.addEventListener('change', function () {
+        document.body.classList.toggle('dark-mode', this.checked);
+        localStorage.setItem('darkModeEnabled', this.checked);
+    });
+
+    // Apply saved mode
+    window.addEventListener('DOMContentLoaded', () => {
+        const enabled = JSON.parse(localStorage.getItem('darkModeEnabled'));
+        if (enabled) {
+            document.body.classList.add('dark-mode');
+            toggleSwitch.checked = true;
+        }
+    });
+</script>
 </body>
 
 </html>

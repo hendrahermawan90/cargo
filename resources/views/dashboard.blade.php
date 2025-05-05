@@ -8,123 +8,177 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Sidebar Styling */
+    :root {
+        --primary-color: #1abc9c;
+        --secondary-color: #16a085;
+        --text-light: #f8f9fa;
+        --bg-light: #ecf0f1;
+        --bg-dark: #2c3e50;
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: var(--bg-light);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+    height: 100vh;
+    background: linear-gradient(180deg,rgba(0, 0, 0, 0.71), #2980b9); /* Background gradien kustom */
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    color: var(--text-light); /* Warna teks tetap gelap */
+    }
+
+.sidebar .text-center h5 {
+    color: #ffffff; /* Pastikan judul Cargo System tetap putih */
+    }
+
+
+
+    .sidebar .nav-link {
+        color: var(--text-light);
+        padding: 14px 20px;
+        margin: 5px 15px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        background-color: transparent;
+    }
+
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.15);
+        padding-left: 30px;
+    }
+
+    .sidebar .nav-link i {
+        margin-right: 10px;
+    }
+
+    .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        flex: 1;
+    }
+
+    /* Navbar */
+    .navbar {
+        margin-left: 250px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        box-shadow: var(--card-shadow);
+    }
+
+    .navbar-brand {
+        color: var(--secondary-color);
+        font-weight: bold;
+    }
+
+    .navbar-nav .nav-link {
+        color: #555;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: var(--primary-color);
+    }
+
+    /* Cards */
+    .card-dashboard {
+        border: none;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        background-color: #fff;
+        transition: transform 0.3s ease;
+    }
+
+    .card-dashboard:hover {
+        transform: translateY(-4px);
+    }
+
+    .stat-icon {
+        font-size: 2.4rem;
+        color: var(--primary-color);
+    }
+
+    /* Status Colors */
+    .status-delivered {
+        color: #27ae60;
+    }
+
+    .status-transit {
+        color: #f1c40f;
+    }
+
+    .status-pending {
+        color: #e74c3c;
+    }
+
+    /* Footer */
+    footer {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        padding: 20px 0;
+        margin-top: auto;
+    }
+
+    footer a {
+        color: var(--text-light);
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
         .sidebar {
-            height: 100vh;
-            background-color: #2c3e50;
-            padding-top: 20px;
-            position: fixed;
-            left: 0;
-            width: 250px;
+            width: 100%;
+            position: relative;
+            height: auto;
         }
 
-        .sidebar .nav-link {
-            color: #ecf0f1;
-            padding: 15px 20px;
-            margin: 5px 0;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, padding-left 0.3s ease;
-        }
-
-        .sidebar .nav-link:hover {
-            background-color: #34495e;
-            padding-left: 30px;
-        }
-
-        .sidebar .nav-link i {
-            margin-right: 10px;
-        }
-
-        /* Main Content Styling */
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            flex: 1;
-        }
-
-        /* Navbar Styling */
+        .main-content,
         .navbar {
-            margin-left: 250px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 10px 20px;
+            margin-left: 0;
         }
+    }
 
-        /* Card Styling */
-        .card-dashboard {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+    /* Dark Mode Styles */
+body.dark-mode {
+    background-color: var(--bg-dark); /* Latar belakang gelap */
+    color: var(--text-light); /* Teks terang */
+}
 
-        .card-dashboard:hover {
-            transform: translateY(-5px);
-        }
+/* Dark mode untuk sidebar */
+.sidebar.dark-mode {
+    background: linear-gradient(180deg, #333, #444); /* Sidebar lebih gelap */
+}
 
-        .stat-icon {
-            font-size: 2.5rem;
-            color: #3498db;
-        }
+/* Dark mode untuk navbar */
+.navbar.dark-mode {
+    background-color: #333; /* Navbar gelap */
+    border-bottom: 1px solid #555; /* Border navbar lebih gelap */
+}
 
-        /* Status Styling */
-        .status-delivered {
-            color: #27ae60;
-        }
+/* Dark mode untuk cards */
+.card-dashboard.dark-mode {
+    background-color: #444; /* Latar belakang kartu gelap */
+    color: #fff; /* Teks putih pada kartu */
+}
 
-        .status-transit {
-            color: #f39c12;
-        }
-
-        .status-pending {
-            color: #e74c3c;
-        }
-
-        /* Footer Styling */
-        footer {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            margin-top: auto;
-        }
-
-        footer a {
-            color: #ecf0f1;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Ensure flexbox layout */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .main-content {
-            flex: 1;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 767px) {
-            .sidebar {
-                width: 100%;
-                position: relative;
-                height: auto;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .navbar {
-                margin-left: 0;
-            }
-        }
-    </style>
+/* Dark mode footer */
+footer.dark-mode {
+    background-color: #222; /* Footer gelap */
+}
+</style>
 </head>
 
 <body>
@@ -166,40 +220,31 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Cargo Express</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tracking">Track Shipment</a>
-                    </li>
-                    @if (Route::has('login'))
-                        @auth
-                            <li class="nav-item">
-                                <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a href="{{ route('login') }}" class="nav-link">Login</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="nav-link">Register</a>
-                                </li>
-                            @endif
-                        @endauth
-                    @endif
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cargo Express</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tracking">Track Shipment</a>
+                </li>
+                <!-- Dark Mode Toggle -->
+                <li class="nav-item">
+                    <button class="btn btn-dark" id="darkModeToggle">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </button>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- Main Content -->
     <div class="main-content">
@@ -320,6 +365,23 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    // Menambahkan event listener untuk tombol Dark Mode
+    const darkModeToggle = document.getElementById("darkModeToggle");
+
+    darkModeToggle.addEventListener("click", () => {
+        // Toggle class 'dark-mode' pada body
+        document.body.classList.toggle("dark-mode");
+
+        // Ganti teks dan icon tombol
+        if (document.body.classList.contains("dark-mode")) {
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode'; // Ganti menjadi Light Mode
+        } else {
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode'; // Ganti menjadi Dark Mode
+        }
+    });
+</script>
 </body>
 
 </html>

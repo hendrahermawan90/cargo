@@ -2,18 +2,18 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white">
                         <h4>Shipment Details
-                            <a href="{{ route('shipments.index') }}" class="btn btn-danger float-end">Back</a>
+                            <a href="{{ route('shipments.index') }}" class="btn btn-danger btn-sm float-end">Back</a>
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <strong>Tracking Number:</strong>
-                            <p>{{ $shipment->tracking_number }}</p>
+                            <p class="bg-light p-2 rounded">{{ $shipment->tracking_number }}</p>
                         </div>
                         <div class="mb-3">
                             <strong>Sender Name:</strong>
@@ -37,7 +37,16 @@
                         </div>
                         <div class="mb-3">
                             <strong>Status:</strong>
-                            <p>{{ $shipment->status }}</p>
+                            <p class="badge 
+                                @if($shipment->status == 'pending') 
+                                    badge-warning 
+                                @elseif($shipment->status == 'in_transit') 
+                                    badge-info 
+                                @elseif($shipment->status == 'delivered') 
+                                    badge-success 
+                                @endif">
+                                {{ $shipment->status }}
+                            </p>
                         </div>
                     </div>
                 </div>

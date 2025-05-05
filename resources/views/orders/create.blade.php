@@ -66,8 +66,6 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-
-                                    
                                 </div>
 
                                 <!-- Kolom Kanan -->
@@ -111,17 +109,6 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-
-                                    <!-- <div class="mb-3">
-                                        <label for="Status" class="form-label">Status</label>
-                                        <select name="Status" id="Status" class="form-select @error('Status') is-invalid @enderror">
-                                            <option value="0" {{ old('Status') == '0' ? 'selected' : '' }}>Inactive</option>
-                                            <option value="1" {{ old('Status') == '1' ? 'selected' : '' }}>Active</option>
-                                        </select>
-                                        @error('Status')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div> -->
                                 </div>
                             </div>
 
