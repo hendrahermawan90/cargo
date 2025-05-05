@@ -13,14 +13,11 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <!-- Menampilkan pesan success jika ada -->
                         @if(session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
                         @endif
-
-                        <!-- Tabel Daftar Customers -->
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -34,9 +31,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($customers as $index => $customer)
+                                @foreach($customers as $customer)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $customer->name }}</td>
                                         <td>{{ $customer->email }}</td>
                                         <td>{{ $customer->phone }}</td>
@@ -54,32 +51,9 @@
                                             </button>
                                         </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($customers as $index => $customer)
-                                        <tr>
-                                            <td>{{ $index + 1 }}</td> <!-- Menampilkan nomor urut -->
-                                            <td>{{ $customer->name }}</td>
-                                            <td>{{ $customer->email }}</td>
-                                            <td>{{ $customer->phone }}</td>
-                                            <td>{{ $customer->address }}</td>
-                                            <td>{{ $customer->Status == 1 ? 'Active' : 'Inactive' }}</td>
-                                            <td>
-                                                <a href="{{ route('customers.show', $customer->id) }}" class="btn btn-info btn-sm">View</a>
-                                                <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- Pagination -->
+                                @endforeach
+                            </tbody>
+                        </table>
                         <div class="no-print">
                             {{ $customers->links() }}
                         </div>
@@ -89,7 +63,7 @@
         </div>
     </div>
 
-    <!-- Modal Konfirmasi Delete -->
+    <!-- Modal Delete -->
     <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <form id="deleteForm" method="POST">
@@ -97,7 +71,7 @@
                 @method('DELETE')
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>
+                        <h5 class="modal-title">Konfirmasi Hapus</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                     </div>
                     <div class="modal-body">
@@ -123,17 +97,16 @@
         });
     </script>
 
-    <!-- Bootstrap JS + Popper -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script Print -->
+    <!-- Print Script -->
     <script>
         function printTable() {
             const printContents = document.querySelector('.card-body').innerHTML;
             const originalContents = document.body.innerHTML;
             const originalTitle = document.title;
 
-            // Set title khusus untuk print
             document.title = "Daftar Customers";
 
             document.body.innerHTML = `
@@ -159,14 +132,13 @@
 
             window.print();
 
-            // Kembalikan isi & title asli
             document.body.innerHTML = originalContents;
             document.title = originalTitle;
             location.reload();
         }
     </script>
 
-    <!-- Hide actions & buttons in print -->
+    <!-- Print Style -->
     <style>
         @media print {
             .no-print,
