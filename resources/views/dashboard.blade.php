@@ -17,6 +17,7 @@
             width: 230px;
             color: #ecf0f1;
             padding-top: 20px;
+
         }
 
         .sidebar .nav-link {
@@ -34,9 +35,10 @@
             transform: scale(1.05);
         }
 
-.sidebar .text-center h5 {
-    color: #ffffff; /* Pastikan judul Cargo System tetap putih */
-    }
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
         .main-content {
             margin-left: 250px;
             padding: 30px;
@@ -58,15 +60,15 @@
             transition: transform 0.3s ease;
         }
 
-    .sidebar .nav-link:hover,
-    .sidebar .nav-link.active {
-        background-color: rgba(255, 255, 255, 0.15);
-        padding-left: 30px;
-    }
+        .card-dashboard:hover {
+            transform: translateY(-5px);
+        }
 
-    .sidebar .nav-link i {
-        margin-right: 10px;
-    }
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+        }
+
         .table .badge {
             font-size: 0.85rem;
             padding: 5px 10px;
@@ -112,36 +114,7 @@
                 margin-left: 0;
             }
         }
-    }
-
-    /* Dark Mode Styles */
-body.dark-mode {
-    background-color: var(--bg-dark); /* Latar belakang gelap */
-    color: var(--text-light); /* Teks terang */
-}
-
-/* Dark mode untuk sidebar */
-.sidebar.dark-mode {
-    background: linear-gradient(180deg, #333, #444); /* Sidebar lebih gelap */
-}
-
-/* Dark mode untuk navbar */
-.navbar.dark-mode {
-    background-color: #333; /* Navbar gelap */
-    border-bottom: 1px solid #555; /* Border navbar lebih gelap */
-}
-
-/* Dark mode untuk cards */
-.card-dashboard.dark-mode {
-    background-color: #444; /* Latar belakang kartu gelap */
-    color: #fff; /* Teks putih pada kartu */
-}
-
-/* Dark mode footer */
-footer.dark-mode {
-    background-color: #222; /* Footer gelap */
-}
-</style>
+    </style>
 </head>
 
 <body>
@@ -151,7 +124,7 @@ footer.dark-mode {
             <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="width: 100px;">
             <h5 class="mt-2">Cargo Express</h5>
         </div>
-<ul class="nav flex-column">
+    <ul class="nav flex-column">
     <li class="nav-item">
         <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="/dashboard">
             <i class="fas fa-home"></i> Dashboard
@@ -197,8 +170,9 @@ footer.dark-mode {
             <i class="fas fa-sign-out-alt"></i> Logout
         </a>
     </li>
-</ul>
-    </div>
+    </ul>
+
+</div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -207,9 +181,9 @@ footer.dark-mode {
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 
     <!-- Main Content -->
@@ -320,23 +294,6 @@ footer.dark-mode {
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-    // Menambahkan event listener untuk tombol Dark Mode
-    const darkModeToggle = document.getElementById("darkModeToggle");
-
-    darkModeToggle.addEventListener("click", () => {
-        // Toggle class 'dark-mode' pada body
-        document.body.classList.toggle("dark-mode");
-
-        // Ganti teks dan icon tombol
-        if (document.body.classList.contains("dark-mode")) {
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode'; // Ganti menjadi Light Mode
-        } else {
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode'; // Ganti menjadi Dark Mode
-        }
-    });
-</script>
 </body>
 
 </html>
