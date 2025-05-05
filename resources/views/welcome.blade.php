@@ -8,42 +8,110 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Hero Section */
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 0;
+            padding: 120px 0;
+            text-align: center;
         }
 
+        .hero-section h1 {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-section p {
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        .hero-section .btn {
+            font-size: 18px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero-section .btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animasi Fade In */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Feature Box */
         .feature-box {
             padding: 30px;
             text-align: center;
-            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature-box:hover {
             transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .feature-icon {
-            font-size: 40px;
+            font-size: 45px;
             color: #0d6efd;
             margin-bottom: 20px;
         }
 
-        .tracking-section {
-            background-color: #f8f9fa;
-            padding: 80px 0;
-        }
-
+        /* Services Card */
         .service-card {
             border: none;
             transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .service-card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Tracking Section */
+        .tracking-section {
+            background-color: #f1f3f5;
+            padding: 80px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: white;
+        }
+
+        footer a {
+            color: #d6d6d6;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #0d6efd;
+        }
+
+        /* Media Query untuk responsif */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1.2rem;
+            }
         }
 
         body.dark-mode {
@@ -159,7 +227,7 @@ body.dark-mode footer a {
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container text-center">
+        <div class="container">
             <h1 class="display-4 mb-4">Your Trusted Shipping Partner</h1>
             <p class="lead mb-4">Fast, reliable, and secure cargo shipping services worldwide</p>
             <a href="{{ route('register') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
@@ -232,8 +300,7 @@ body.dark-mode footer a {
                     <div class="card service-card">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-box me-2"></i>Standard Shipping</h5>
-                            <p class="card-text">Reliable and cost-effective shipping solution for regular deliveries.
-                            </p>
+                            <p class="card-text">Reliable and cost-effective shipping solution for regular deliveries.</p>
                         </div>
                     </div>
                 </div>
