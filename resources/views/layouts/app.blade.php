@@ -23,6 +23,7 @@
             width: 230px;
             color: #ecf0f1;
             padding-top: 20px;
+
         }
 
         .sidebar .nav-link {

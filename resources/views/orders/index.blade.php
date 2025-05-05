@@ -10,6 +10,7 @@
                             Orders
                             <a href="#" onclick="printTable()" class="btn btn-secondary float-end me-2">Print</a>
                             <a href="{{ route('orders.create') }}" class="btn btn-primary float-end me-2">Add New Order</a>
+
                         </h4>
                     </div>
                     <div class="card-body">
@@ -18,9 +19,9 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-
                         <table class="table table-bordered">
                             <thead>
+
                                 <tr>
                                     <th>No</th>
                                     <th>Tracking Number</th>
@@ -30,6 +31,7 @@
                                     <th>Status</th>
                                     <th>Company Code</th>
                                     <th class="no-print">Actions</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +59,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                         <div class="no-print">
                             {{ $orders->links() }}
                         </div>

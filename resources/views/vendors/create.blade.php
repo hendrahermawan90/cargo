@@ -2,75 +2,111 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg rounded">
+                <div class="card-header bg-primary text-white">
                     <h4>Create New Vendor</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('vendors.store') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="name">Vendor Name</label>
-                            <input type="text" name="name" class="form-control" id="name" required>
+                        
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Vendor Name</label>
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" required>
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="contact">Contact</label>
-                            <input type="text" name="contact" class="form-control" id="contact" required>
+                        <div class="form-group mb-3">
+                            <label for="contact" class="form-label">Contact</label>
+                            <input type="text" name="contact" class="form-control @error('contact') is-invalid @enderror" id="contact" required>
+                            @error('contact')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <select name="status" class="form-control" id="status" required>
+                        <div class="form-group mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select name="status" class="form-select @error('status') is-invalid @enderror" id="status" required>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
                             </select>
+                            @error('status')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <!-- Additional fields for address, city, state, etc. -->
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" name="address" class="form-control" id="address">
+                        <div class="form-group mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address">
+                            @error('address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" name="city" class="form-control" id="city">
+                        <div class="form-group mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" id="city">
+                            @error('city')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="state">State</label>
-                            <input type="text" name="state" class="form-control" id="state">
+                        <div class="form-group mb-3">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" name="state" class="form-control @error('state') is-invalid @enderror" id="state">
+                            @error('state')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="postal_code">Postal Code</label>
-                            <input type="text" name="postal_code" class="form-control" id="postal_code">
+                        <div class="form-group mb-3">
+                            <label for="postal_code" class="form-label">Postal Code</label>
+                            <input type="text" name="postal_code" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code">
+                            @error('postal_code')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <input type="text" name="country" class="form-control" id="country">
+                        <div class="form-group mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" name="country" class="form-control @error('country') is-invalid @enderror" id="country">
+                            @error('country')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" id="email">
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="website">Website</label>
-                            <input type="url" name="website" class="form-control" id="website">
+                        <div class="form-group mb-3">
+                            <label for="website" class="form-label">Website</label>
+                            <input type="url" name="website" class="form-control @error('website') is-invalid @enderror" id="website">
+                            @error('website')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                        <div class="form-group mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="3"></textarea>
+                            @error('description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success">Save Vendor</button>
+                            <a href="{{ route('vendors.index') }}" class="btn btn-secondary">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>
