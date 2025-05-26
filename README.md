@@ -115,12 +115,4 @@ Untuk pengujian otomatis, kamu bisa menambahkan Laravel Dusk (end-to-end testing
 
 ## 🤝 Kontribusi
 
-
-
----
-
-## 📄 Lisensi
-
-Aplikasi ini menggunakan lisensi [MIT](LICENSE).
-
 ---
