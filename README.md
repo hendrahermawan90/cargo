@@ -110,16 +110,6 @@ php artisan test
 
 Untuk pengujian otomatis, kamu bisa menambahkan Laravel Dusk (end-to-end testing).
 
----
-
-## 🚀 Deployment
-
-Rekomendasi deployment:
-
-* Laravel Forge
-* Ploi.io
-* Docker + VPS
-* Shared Hosting dengan PHP 8.1+
 
 ---
 
