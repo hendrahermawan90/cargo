@@ -10,7 +10,6 @@
                             Orders
                             <a href="#" onclick="printTable()" class="btn btn-secondary float-end me-2">Print</a>
                             <a href="{{ route('orders.create') }}" class="btn btn-primary float-end me-2">Add New Order</a>
-
                         </h4>
                     </div>
                     <div class="card-body">
@@ -21,40 +20,52 @@
                         @endif
                         <table class="table table-bordered">
                             <thead>
-
                                 <tr>
+                                    <th class="no-print text-center">Actions</th>
                                     <th>No</th>
                                     <th>Tracking Number</th>
                                     <th>Customer</th>
                                     <th>Origin</th>
                                     <th>Destination</th>
                                     <th>Status</th>
-                                    <th>Company Code</th>
-                                    <th class="no-print">Actions</th>
-
+                                    <th>Created By</th>
+                                    <th>Update By</th>
+                                    <th>Last Update</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($orders as $order)
                                     <tr>
+                                        <td class="no-print text-center">
+                                            <!-- Tombol View dengan ikon eye -->
+                                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-outline-info btn-sm" title="View">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+
+                                            <!-- Tombol Edit dengan ikon pencil -->
+                                            <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-outline-primary btn-sm" title="Edit">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+
+                                            <!-- Tombol Delete dengan ikon trash -->
+                                            <button type="button"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    title="Delete"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#confirmDeleteModal"
+                                                    data-id="{{ $order->id }}">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $order->tracking_number }}</td>
                                         <td>{{ $order->customer->name }}</td>
                                         <td>{{ $order->origin }}</td>
                                         <td>{{ $order->destination }}</td>
                                         <td>{{ ucfirst($order->order_status) }}</td>
-                                        <td>{{ $order->CompanyCode ?? 'N/A' }}</td>
-                                        <td class="no-print">
-                                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">View</a>
-                                            <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                            <button type="button"
-                                                    class="btn btn-danger btn-sm"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#confirmDeleteModal"
-                                                    data-id="{{ $order->id }}">
-                                                Delete
-                                            </button>
-                                        </td>
+                                        <td>{{ $order->CreatedBy }}</td>
+                                        <td>{{ $order->LastUpdatedBy }}</td>
+                                        <td>{{ $order->LastUpdatedDate }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
