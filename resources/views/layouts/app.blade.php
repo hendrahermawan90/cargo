@@ -142,7 +142,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="/tracking">
             <i class="fas fa-truck"></i> Tracking
         </a>
     </li>
@@ -162,12 +162,12 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="/reports">
             <i class="fas fa-file-invoice"></i> Reports
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="/settings">
             <i class="fas fa-cog"></i> Settings
         </a>
     </li>
