@@ -17,7 +17,7 @@
   Otentikasi cepat dan aman menggunakan Laravel Socialite.
 
 * 📊 **Dashboard Admin**
-  Statistik jumlah pengiriman, kurir aktif, status pengiriman, grafik bulanan, dll.
+  Statistik jumlah pengiriman, kurir aktif, status pengiriman, dll.
 
 * 🧾 **Cetak Resi & Laporan**
   Unduh resi pengiriman dalam format PDF dan cetak laporan berdasarkan rentang waktu.
