@@ -27,89 +27,10 @@
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
-
-| Kategori      | Teknologi                                           |
-| ------------- | --------------------------------------------------- |
-| Framework     | Laravel 10+                                         |
-| Otentikasi    | Laravel Socialite, Laravel Breeze / Fortify         |
-| Database      | MySQL / PostgreSQL                                  |
-| Frontend      | Blade, Tailwind CSS (bisa Vue/React jika digunakan) |
-| PDF Generator | DomPDF / SnappyPDF                                  |
-| Deployment    | Laravel Forge, Docker, atau VPS                     |
-
----
-
-## ⚙️ Instalasi Lokal
-
-### 1. Clone Repositori
-
-```bash
-git clone https://github.com/namakamu/cargo.git
-cd cargo
-```
-
-### 2. Instal Dependensi
-
-```bash
-composer install
-npm install && npm run dev
-```
-
-### 3. Konfigurasi Environment
-
-```bash
-cp .env.example .env
-```
-
-Edit file `.env` dan sesuaikan dengan konfigurasi database serta kredensial Google OAuth:
-
-```
-APP_NAME=Cargo
-APP_URL=http://localhost:8000
-
-DB_CONNECTION=mysql
-DB_DATABASE=cargo
-DB_USERNAME=root
-DB_PASSWORD=
-
-GOOGLE_CLIENT_ID=xxx
-GOOGLE_CLIENT_SECRET=xxx
-GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
-```
-
-### 4. Generate Key & Migrasi Database
-
-```bash
-php artisan key:generate
-php artisan migrate --seed
-```
-
-### 5. Jalankan Aplikasi
-
-```bash
-php artisan serve
-```
-
-Akses aplikasi di `http://localhost:8000`.
-
----
 
 ## 🔒 Login dengan Google
 
 Untuk menggunakan fitur login Google, daftarkan aplikasi di [Google Cloud Console](https://console.cloud.google.com/), aktifkan OAuth, dan masukkan kredensial pada `.env`.
-
----
-
-
-## 🧪 Pengujian
-
-```bash
-php artisan test
-```
-
-Untuk pengujian otomatis, kamu bisa menambahkan Laravel Dusk (end-to-end testing).
-
 
 ---
 
