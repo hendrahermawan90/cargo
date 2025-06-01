@@ -18,7 +18,7 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-sm">
                             <thead>
                                 <tr>
                                     <th class="no-print text-center">Actions</th>
@@ -37,17 +37,12 @@
                                 @foreach($orders as $order)
                                     <tr>
                                         <td class="no-print text-center">
-                                            <!-- Tombol View dengan ikon eye -->
                                             <a href="{{ route('orders.show', $order->id) }}" class="btn btn-outline-info btn-sm" title="View">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-
-                                            <!-- Tombol Edit dengan ikon pencil -->
                                             <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-outline-primary btn-sm" title="Edit">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-
-                                            <!-- Tombol Delete dengan ikon trash -->
                                             <button type="button"
                                                     class="btn btn-outline-danger btn-sm"
                                                     title="Delete"
@@ -118,50 +113,76 @@
 
     <!-- Print Script -->
     <script>
-        function printTable() {
-            const printContents = document.querySelector('.card-body').innerHTML;
-            const originalContents = document.body.innerHTML;
-            const originalTitle = document.title;
+    function printTable() {
+        const table = document.querySelector('.table').cloneNode(true);
 
-            document.title = "Daftar Orders";
+        // Hapus kolom "Actions"
+        const theadRow = table.querySelector('thead tr');
+        if (theadRow) theadRow.removeChild(theadRow.children[0]);
 
-            document.body.innerHTML = `
-                <html>
-                <head>
-                    <title>Daftar Orders</title>
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-                    <style>
-                        @media print {
-                            .no-print {
-                                display: none !important;
-                            }
+        const rows = table.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.removeChild(row.children[0]);
+        });
+
+        const win = window.open('', '_blank');
+        win.document.write(`
+            <html>
+            <head>
+                <title>Daftar Orders</title>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+                <style>
+                    body {
+                        padding: 20px;
+                        font-size: 12px;
+                        font-family: Arial, sans-serif;
+                    }
+                    h4 {
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-size: 12px;
+                    }
+                    th, td {
+                        border: 1px solid #000;
+                        padding: 6px 8px;
+                        text-align: left;
+                        vertical-align: top;
+                        max-width: 150px;
+                        word-break: break-word;
+                    }
+                    .no-print-btn {
+                        margin-bottom: 20px;
+                        display: flex;
+                        gap: 10px;
+                        justify-content: center;
+                    }
+                    @media print {
+                        .no-print-btn {
+                            display: none !important;
                         }
-                    </style>
-                </head>
-                <body>
-                    <div class="container mt-4">
-                        ${printContents}
-                    </div>
-                </body>
-                </html>
-            `;
-
-            window.print();
-
-            document.body.innerHTML = originalContents;
-            document.title = originalTitle;
-            location.reload();
-        }
+                        @page {
+                            size: A4 landscape;
+                            margin: 1cm;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                <h4>Daftar Orders</h4>
+                <div class="no-print-btn">
+                    <button onclick="window.print()" class="btn btn-primary">Print</button>
+                    <button onclick="window.close()" class="btn btn-secondary">Kembali</button>
+                </div>
+                ${table.outerHTML}
+            </body>
+            </html>
+        `);
+        win.document.close();
+    }
     </script>
 
-    <!-- Print Style -->
-    <style>
-        @media print {
-            .no-print,
-            .btn,
-            .pagination {
-                display: none !important;
-            }
-        }
-    </style>
 @endsection
