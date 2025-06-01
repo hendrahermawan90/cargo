@@ -6,12 +6,10 @@
     <title>Cargo Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Tambahkan di bagian <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-<!-- Tambahkan sebelum </body> -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
         /* Sidebar Styling */
@@ -142,7 +140,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="/tracking">
             <i class="fas fa-truck"></i> Tracking
         </a>
     </li>
@@ -162,12 +160,12 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="/reports">
             <i class="fas fa-file-invoice"></i> Reports
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="/settings">
             <i class="fas fa-cog"></i> Settings
         </a>
     </li>
@@ -233,7 +231,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Tambahkan sebelum </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-<!-- tesss -->
 
 </html>
