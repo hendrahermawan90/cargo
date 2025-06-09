@@ -1,41 +1,53 @@
 # 🚚 Cargo – Aplikasi Web Manajemen Pengiriman Barang
 
-**Cargo** adalah aplikasi web berbasis Laravel yang dirancang untuk membantu perusahaan logistik dan pengguna individu dalam mengelola proses pengiriman barang dengan efisien. Aplikasi ini dilengkapi dengan fitur-fitur utama seperti pelacakan pengiriman, otentikasi sosial (Google Login), manajemen pelanggan, pencetakan resi, dan dashboard statistik.
+**Cargo** adalah aplikasi web berbasis Laravel yang dikembangkan oleh **Kelompok 5** untuk membantu perusahaan logistik maupun pengguna individu dalam mengelola proses pengiriman barang secara efisien dan modern.
 
-## ✨ Fitur Utama
-
-* 📦 **Manajemen Pengiriman**
-  Buat, perbarui, dan kelola data pengiriman barang. Termasuk status pengiriman (dalam proses, terkirim, gagal, dll).
-
-* 🗺️ **Pelacakan Pengiriman (Tracking)**
-  Lacak status dan posisi pengiriman berdasarkan kode resi unik.
-
-* 👥 **Manajemen Pengguna & Pelanggan**
-  Role-based access: admin, kurir, dan pelanggan. Setiap pengguna memiliki akses terbatas sesuai peran.
-
-* 🔐 **Login dengan Google**
-  Otentikasi cepat dan aman menggunakan Laravel Socialite.
-
-* 📊 **Dashboard Admin**
-  Statistik jumlah pengiriman, kurir aktif, status pengiriman, dll.
-
-* 🧾 **Cetak Resi & Laporan**
-  Unduh resi pengiriman dalam format PDF dan cetak laporan berdasarkan rentang waktu.
-
-* 📱 **Responsif & Mobile-Friendly**
-  Tampilan dioptimalkan untuk desktop maupun perangkat mobile.
+Aplikasi ini hadir dengan fitur pelacakan real-time, manajemen pengguna berbasis peran, otentikasi Google, pencetakan resi otomatis, serta dashboard statistik yang informatif.
 
 ---
 
+## ✨ Fitur Unggulan
 
-## 🔒 Login dengan Google
+- 📦 **Manajemen Pengiriman**  
+  Buat, ubah, dan kelola data pengiriman barang secara dinamis, lengkap dengan status pengiriman: *dalam proses*, *terkirim*, *gagal*, dll.
 
-Untuk menggunakan fitur login Google, daftarkan aplikasi di [Google Cloud Console](https://console.cloud.google.com/), aktifkan OAuth, dan masukkan kredensial pada `.env`.
+- 🗺️ **Pelacakan Pengiriman (Tracking)**  
+  Lacak status dan lokasi pengiriman menggunakan kode resi unik.
+
+- 👥 **Manajemen Pengguna & Pelanggan**  
+  Akses berbasis peran (*admin*, *kurir*, dan *pelanggan*) dengan otorisasi terpisah sesuai kebutuhan.
+
+- 🔐 **Login dengan Google**  
+  Otentikasi cepat dan aman melalui Google menggunakan Laravel Socialite.
+
+- 📊 **Dashboard Admin Interaktif**  
+  Menyajikan data statistik seperti jumlah pengiriman, status paket, dan aktivitas pengguna.
+
+- 🧾 **Cetak Resi & Laporan PDF**  
+  Otomatisasi pencetakan resi dan laporan pengiriman dalam format PDF berdasarkan filter tanggal.
+
+- 📱 **Desain Responsif & Mobile-Friendly**  
+  Tampilan antarmuka yang optimal di berbagai perangkat, mulai dari desktop hingga ponsel.
 
 ---
 
-## 🤝 Kontributor
+## 🔒 Integrasi Google Login
+
+Untuk mengaktifkan Google Login:
+
+1. Daftarkan aplikasi Anda di [Google Cloud Console](https://console.cloud.google.com/).
+2. Aktifkan OAuth 2.0.
+3. Masukkan `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, dan `GOOGLE_REDIRECT_URI` pada file `.env`.
+
+---
+
+## 👨‍💻 Dibuat oleh – Kelompok 5
+
+> Kami adalah mahasiswa yang berkolaborasi untuk menciptakan solusi digital sederhana namun berdampak dalam dunia logistik.
 
 ![team](https://github.com/user-attachments/assets/f384ff4d-54af-4ecf-be96-dea6c03f378a)
 
 ---
+
+> Terima kasih telah menggunakan Cargo!  
+> Semoga aplikasi ini bisa bermanfaat dan memudahkan proses logistik Anda. 🚀
