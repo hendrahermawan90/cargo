@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
-// Rute untuk shipments hanya bisa diakses oleh pengguna yang sudah login
+// Rute hanya bisa diakses oleh pengguna yang sudah login
 Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
     Route::resource('vendors', VendorController::class);
