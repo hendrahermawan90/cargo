@@ -34,6 +34,8 @@ Untuk menggunakan fitur login Google, daftarkan aplikasi di [Google Cloud Consol
 
 ---
 
-## 🤝 Kontribusi
+## 🤝 Kontributor
+
+![team](https://github.com/user-attachments/assets/f384ff4d-54af-4ecf-be96-dea6c03f378a)
 
 ---
