@@ -32,8 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
     Route::resource('vendors', VendorController::class);
     Route::resource('customers', CustomerController::class);
-
-    // Tambahkan rute untuk order (Orders)
     Route::resource('orders', OrderController::class); // Menambahkan resource route untuk Order
 });
 
