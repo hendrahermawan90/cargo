@@ -1,65 +1,153 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-lg rounded">
-                    <div class="card-header bg-primary text-white">
-                        <h4>Edit Customer</h4>
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-sm border-0 rounded-lg">
+                <div class="card-header bg-primary text-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-semibold">
+                            <i class="fas fa-user-edit me-2"></i>Edit Pelanggan
+                        </h5>
+                        <a href="{{ route('customers.index') }}" class="btn btn-sm btn-light">
+                            <i class="fas fa-arrow-left me-1"></i> Kembali
+                        </a>
                     </div>
-                    <div class="card-body">
-                        <!-- Menampilkan pesan error jika ada -->
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                </div>
 
-                        <form action="{{ route('customers.update', $customer->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                <div class="card-body p-4">
+                    @if ($errors->any())
+                        <div class="alert alert-danger mb-4">
+                            <ul class="mb-0 ps-3">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $customer->name) }}" required>
+                    <form action="{{ route('customers.update', $customer->id) }}" method="POST" class="needs-validation" novalidate>
+                        @csrf
+                        @method('PUT')
+
+                        <div class="row">
+                            <div class="col-md-6 pe-md-4 border-end">
+                                <h6 class="fw-bold text-primary mb-3 pb-2">
+                                    <i class="fas fa-user-circle me-2"></i>Informasi Pribadi
+                                </h6>
+
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                                    <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $customer->name) }}" required>
+                                    <div class="invalid-feedback">Harap isi nama pelanggan</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" name="email" class="form-control" id="email" value="{{ old('email', $customer->email) }}" required>
+                                    <div class="invalid-feedback">Harap isi email yang valid</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Telepon/HP</label>
+                                    <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone', $customer->phone) }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select name="Status" class="form-select" id="status">
+                                        <option value="1" {{ old('Status', $customer->Status) == 1 ? 'selected' : '' }}>Aktif</option>
+                                        <option value="0" {{ old('Status', $customer->Status) == 0 ? 'selected' : '' }}>Tidak Aktif</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" value="{{ old('email', $customer->email) }}" required>
-                            </div>
+                            <div class="col-md-6 ps-md-4">
+                                <h6 class="fw-bold text-primary mb-3 pb-2">
+                                    <i class="fas fa-map-marker-alt me-2"></i>Lokasi
+                                </h6>
 
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Phone</label>
-                                <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone', $customer->phone) }}">
-                            </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Alamat Lengkap</label>
+                                    <input type="text" name="address" class="form-control" id="address" value="{{ old('address', $customer->address) }}" placeholder="Contoh: Jl. Sudirman No. 123, Jakarta">
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" name="address" class="form-control" id="address" value="{{ old('address', $customer->address) }}">
+                                <div class="mb-3">
+                                    <label class="form-label">Peta Lokasi</label>
+                                    <div class="border rounded bg-light" style="height: 300px;">
+                                        <iframe
+                                            id="map_address"
+                                            width="100%"
+                                            height="100%"
+                                            style="border:0; min-height: 300px;"
+                                            loading="lazy"
+                                            allowfullscreen
+                                            referrerpolicy="no-referrer-when-downgrade"
+                                            src="{{ $customer->address ? 'https://maps.google.com/maps?q='.urlencode($customer->address).'&output=embed' : 'https://maps.google.com/maps?q=Indonesia&output=embed' }}">
+                                        </iframe>
+                                    </div>
+                                    <small class="text-muted">Peta akan menyesuaikan saat alamat diketik</small>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="status" class="form-label">Status</label>
-                                <select name="Status" class="form-select" id="status">
-                                    <option value="1" {{ old('Status', $customer->Status) == 1 ? 'selected' : '' }}>Active</option>
-                                    <option value="0" {{ old('Status', $customer->Status) == 0 ? 'selected' : '' }}>Inactive</option>
-                                </select>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+                                    <button type="reset" class="btn btn-outline-secondary">
+                                        <i class="fas fa-undo me-1"></i> Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-save me-1"></i> Update Data
+                                    </button>
+                                </div>
                             </div>
-
-                            <div class="d-flex justify-content-between">
-                                <button type="submit" class="btn btn-success">Update</button>
-                                <a href="{{ route('customers.index') }}" class="btn btn-secondary">Cancel</a>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addressInput = document.getElementById("address");
+        const mapIframe = document.getElementById("map_address");
+        let debounceTimer;
+
+        // Fungsi untuk memperbarui peta
+        function updateMap() {
+            const address = addressInput.value.trim();
+            if (address.length > 3) {
+                const encodedAddress = encodeURIComponent(address);
+                mapIframe.src = `https://maps.google.com/maps?q=${encodedAddress}&output=embed`;
+            } else if (address.length === 0) {
+                // Kembali ke default jika alamat dikosongkan
+                mapIframe.src = 'https://maps.google.com/maps?q=Indonesia&output=embed';
+            }
+        }
+
+        // Inisialisasi peta saat pertama kali load
+        if (!addressInput.value.trim()) {
+            mapIframe.src = 'https://maps.google.com/maps?q=Indonesia&output=embed';
+        }
+
+        // Perbarui peta saat mengetik dengan debounce
+        addressInput.addEventListener("input", function () {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(updateMap, 500);
+        });
+
+        // Perbarui peta saat form di-reset
+        document.querySelector('button[type="reset"]').addEventListener('click', function() {
+            setTimeout(() => {
+                mapIframe.src = 'https://maps.google.com/maps?q=Indonesia&output=embed';
+            }, 100);
+        });
+    });
+</script>
 @endsection

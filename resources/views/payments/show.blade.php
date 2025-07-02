@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <!-- Card Detail Pengiriman -->
+            <!-- Card Detail Pembayaran -->
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="bi bi-truck me-2"></i>Detail Pengiriman</h5>
-                    <a href="{{ route('shipments.index') }}" class="btn btn-light btn-sm">
+                    <h5 class="mb-0"><i class="bi bi-receipt me-2"></i>Detail Pembayaran</h5>
+                    <a href="{{ route('payments.index') }}" class="btn btn-light btn-sm">
                         <i class="bi bi-arrow-left"></i> Kembali
                     </a>
                 </div>
@@ -19,74 +19,73 @@
                         <tbody>
                             <tr>
                                 <th class="text-muted" style="width: 30%">🔢 Tracking Number</th>
-                                <td>{{ $shipment->tracking_number }}</td>
+                                <td>{{ $payment->shipment?->tracking_number ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">👤 Customer</th>
-                                <td>{{ $shipment->customer->name ?? '-' }}</td>
+                                <td>{{ $payment->shipment?->customer?->name ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📞 No. HP Customer</th>
-                                <td>{{ $shipment->customer->phone ?? '-' }}</td>
+                                <td>{{ $payment->shipment?->customer?->phone ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📦 Pengirim</th>
-                                <td>{{ $shipment->sender_name }}</td>
+                                <th class="text-muted">📦 Nama Pengirim</th>
+                                <td>{{ $payment->shipment?->sender_name ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">🏠 Alamat Pengirim</th>
-                                <td>{{ $shipment->sender_address }}</td>
+                                <td>{{ $payment->shipment?->sender_address ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">👥 Penerima</th>
-                                <td>{{ $shipment->receiver_name }}</td>
+                                <th class="text-muted">👥 Nama Penerima</th>
+                                <td>{{ $payment->shipment?->receiver_name ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📞 No. HP Penerima</th>
-                                <td>{{ $shipment->receiver_phone ?? '-' }}</td>
+                                <td>{{ $payment->shipment?->receiver_phone ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📍 Alamat Penerima</th>
-                                <td>{{ $shipment->receiver_address }}</td>
+                                <td>{{ $payment->shipment?->receiver_address ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">⚖️ Berat</th>
-                                <td>{{ $shipment->weight }} kg</td>
+                                <th class="text-muted">💳 Metode Pembayaran</th>
+                                <td>{{ ucfirst($payment->payment_method) }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">💰 Harga</th>
-                                <td>Rp {{ number_format($shipment->price, 0, ',', '.') }}</td>
+                                <th class="text-muted">💰 Jumlah</th>
+                                <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📌 Status</th>
                                 <td>
                                     @php
-                                        $badge = match(strtolower($shipment->status)) {
+                                        $badge = match(strtolower($payment->status)) {
+                                            'paid' => 'success',
                                             'pending' => 'secondary',
-                                            'in transit' => 'warning',
-                                            'delivered' => 'success',
-                                            'canceled' => 'danger',
+                                            'failed' => 'danger',
                                             default => 'dark'
                                         };
                                     @endphp
-                                    <span class="badge bg-{{ $badge }}">{{ ucfirst($shipment->status) }}</span>
+                                    <span class="badge bg-{{ $badge }}">{{ ucfirst($payment->status) }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-muted">👤 Dibuat Oleh</th>
-                                <td>{{ $shipment->CreatedBy ?? '-' }}</td>
+                                <td>{{ $payment->CreatedBy ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📅 Dibuat Tanggal</th>
-                                <td>{{ $shipment->CreatedDate ?? '-' }}</td>
+                                <td>{{ $payment->CreatedDate ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">👤 Diperbarui Oleh</th>
-                                <td>{{ $shipment->LastUpdatedBy ?? '-' }}</td>
+                                <td>{{ $payment->LastUpdatedBy ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📅 Diperbarui Tanggal</th>
-                                <td>{{ $shipment->LastUpdatedDate ?? '-' }}</td>
+                                <td>{{ $payment->LastUpdatedDate ?? '-' }}</td>
                             </tr>
                         </tbody>
                     </table>
