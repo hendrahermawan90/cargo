@@ -24,12 +24,20 @@
                                 <tr>
                                     <th class="no-print">Aksi</th>
                                     <th>No</th>
+<<<<<<< HEAD
                                     <th>Kode Pembayaran</th>
                                     <th>No. Tracking</th>
                                     <th>Nama Penerima</th>
                                     <th>Alamat Penerima</th>
                                     <th>Nama Pengirim</th>
                                     <th>Alamat Pengirim</th>
+=======
+                                    <th>No. Tracking</th>
+                                    <th>Nama Penerima</th>
+                                    <th>Alamat Penerima</th> {{-- alamat penerima --}}
+                                    <th>Nama Pengirim</th>
+                                    <th>Alamat Pengirim</th> {{-- alamat pengirim --}}
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
                                     <th>Metode</th>
                                     <th>Jumlah (Rp)</th>
                                     <th>Status</th>
@@ -64,12 +72,20 @@
                                             @endif
                                         </td>
                                         <td class="text-center">{{ $loop->iteration }}</td>
+<<<<<<< HEAD
                                         <td>{{ $payment->kode_pembayaran ?? '-' }}</td>
                                         <td>{{ $payment->shipment?->tracking_number ?? '-' }}</td>
                                         <td>{{ $payment->shipment?->receiver_name ?? '-' }}</td>
                                         <td>{{ $payment->shipment?->receiver_address ?? '-' }}</td>
                                         <td>{{ $payment->shipment?->sender_name ?? '-' }}</td>
                                         <td>{{ $payment->shipment?->sender_address ?? '-' }}</td>
+=======
+                                        <td>{{ $payment->shipment?->tracking_number ?? '-' }}</td>
+                                        <td>{{ $payment->shipment?->receiver_name ?? '-' }}</td>
+                                        <td>{{ $payment->shipment?->receiver_address ?? '-' }}</td> {{-- alamat penerima --}}
+                                        <td>{{ $payment->shipment?->sender_name ?? '-' }}</td>
+                                        <td>{{ $payment->shipment?->sender_address ?? '-' }}</td> {{-- alamat pengirim --}}
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
                                         <td>{{ ucfirst($payment->payment_method) }}</td>
                                         <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
                                         <td>
@@ -87,7 +103,11 @@
                                     </tr>
                                 @empty
                                     <tr>
+<<<<<<< HEAD
                                         <td colspan="12" class="text-center">Belum ada pembayaran.</td>
+=======
+                                        <td colspan="11" class="text-center">Belum ada pembayaran.</td>
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
                                     </tr>
                                 @endforelse
                             </tbody>

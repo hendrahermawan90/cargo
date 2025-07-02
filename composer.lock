@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "0d358339336f00af65c7c50bf16bf146",
+=======
+    "content-hash": "fc0c99664fd7791d5219550b106fa1f5",
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2671,6 +2675,7 @@
             "time": "2024-12-08T08:18:47+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "maatwebsite/excel",
             "version": "3.1.64",
             "source": {
@@ -3004,6 +3009,8 @@
             "time": "2024-03-31T07:05:07+00:00"
         },
         {
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
             "name": "midtrans/midtrans-php",
             "version": "2.6.2",
             "source": {

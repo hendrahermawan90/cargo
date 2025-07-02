@@ -7,12 +7,18 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+<<<<<<< HEAD
         "barryvdh/laravel-dompdf": "*",
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^12.0",
         "laravel/socialite": "^5.20",
         "laravel/tinker": "^2.10.1",
+<<<<<<< HEAD
         "maatwebsite/excel": "*",
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         "midtrans/midtrans-php": "^2.6"
     },
     "require-dev": {

@@ -24,6 +24,7 @@
 
         <div class="mb-3">
             <label for="sender_address" class="form-label">Alamat Pengirim</label>
+<<<<<<< HEAD
             <textarea name="sender_address" id="sender_address" class="form-control" required></textarea>
         </div>
 
@@ -38,6 +39,9 @@
                 referrerpolicy="no-referrer-when-downgrade"
                 src="">
             </iframe>
+=======
+            <textarea name="sender_address" class="form-control" required></textarea>
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         </div>
 
         <div class="mb-3">
@@ -47,6 +51,7 @@
 
         <div class="mb-3">
             <label for="receiver_address" class="form-label">Alamat Penerima</label>
+<<<<<<< HEAD
             <textarea name="receiver_address" id="receiver_address" class="form-control" required></textarea>
         </div>
 
@@ -63,6 +68,12 @@
             </iframe>
         </div>
 
+=======
+            <textarea name="receiver_address" class="form-control" required></textarea>
+        </div>
+
+        <!-- Tambahkan input No. HP Penerima -->
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         <div class="mb-3">
             <label for="receiver_phone" class="form-label">No. HP Penerima</label>
             <input type="text" name="receiver_phone" class="form-control" required>
@@ -76,6 +87,7 @@
         <button type="submit" class="btn btn-success">Simpan</button>
         <a href="{{ route('shipments.index') }}" class="btn btn-secondary">Batal</a>
     </form>
+<<<<<<< HEAD
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -93,5 +105,7 @@
             updateMap("receiver_address", "map_receiver");
         });
     </script>
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
 </div>
 @endsection

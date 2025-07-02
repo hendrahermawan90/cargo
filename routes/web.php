@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController; // Tambahkan import untuk OrderController
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PaymentController;
+<<<<<<< HEAD
 use App\Http\Controllers\TrackingController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ReportController;
@@ -15,6 +16,8 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\MidtransController;
 
 
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
 
 
 // Halaman utama atau welcome
@@ -67,6 +70,7 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 
 // Webhook dari Midtrans (tanpa middleware auth!)
 Route::post('/payments/notification', [PaymentController::class, 'notificationHandler'])->name('payments.notification');
+<<<<<<< HEAD
 
 
 
@@ -121,3 +125,5 @@ Route::post('/midtrans-notification', [MidtransController::class, 'notificationH
 Route::post('/payments/notification', [PaymentController::class, 'notificationHandler'])->name('payments.notification');
 
 Route::post('/midtrans/callback', [PaymentController::class, 'notificationHandler']);
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96

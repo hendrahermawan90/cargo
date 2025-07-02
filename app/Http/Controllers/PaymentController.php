@@ -6,10 +6,13 @@ use App\Models\Payment;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Log;
 use Midtrans\Config as MidtransConfig;
 use Midtrans\Snap;
 use Midtrans\Notification;
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
 
 class PaymentController extends Controller
 {
@@ -25,14 +28,30 @@ class PaymentController extends Controller
             ->where(function ($query) {
                 $query->whereDoesntHave('payments', function ($q) {
                     $q->where('IsDeleted', 0);
+<<<<<<< HEAD
                 })->orWhereRaw(
                     '(SELECT COALESCE(SUM(amount), 0) FROM payments WHERE shipment_id = shipments.id AND IsDeleted = 0) < shipments.price'
                 );
             })->get();
+=======
+                })
+                ->orWhereRaw('(SELECT COALESCE(SUM(amount), 0) FROM payments WHERE shipment_id = shipments.id AND IsDeleted = 0) < shipments.price');
+            })
+            ->get();
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
 
         return view('payments.create', compact('shipments'));
     }
 
+<<<<<<< HEAD
+=======
+    public function show(Payment $payment)
+    {
+        return view('payments.show', compact('payment'));
+    }
+
+
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
     public function store(Request $request)
     {
         $request->validate([
@@ -41,6 +60,10 @@ class PaymentController extends Controller
             'amount' => 'required|numeric|min:0',
         ]);
 
+<<<<<<< HEAD
+=======
+        // 🔒 Validasi: Cegah kelebihan pembayaran
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         $existingTotal = Payment::where('shipment_id', $request->shipment_id)
             ->where('IsDeleted', 0)
             ->sum('amount');
@@ -59,9 +82,13 @@ class PaymentController extends Controller
             $paid_at = now();
         }
 
+<<<<<<< HEAD
         $kodePembayaran = 'INV-' . time();
 
         $payment = Payment::create([
+=======
+        $payment = new Payment([
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
             'shipment_id' => $request->shipment_id,
             'payment_method' => $request->payment_method,
             'amount' => $request->amount,
@@ -71,9 +98,16 @@ class PaymentController extends Controller
             'IsDeleted' => 0,
             'CreatedBy' => Auth::user()->name ?? 'system',
             'CreatedDate' => now(),
+<<<<<<< HEAD
             'kode_pembayaran' => $kodePembayaran,
         ]);
 
+=======
+        ]);
+
+        $payment->save();
+
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         if (strtolower($request->payment_method) === 'transfer') {
             return redirect()->route('payments.pay', $payment->id);
         }
@@ -84,11 +118,23 @@ class PaymentController extends Controller
     public function pay($id)
     {
         $payment = Payment::with('shipment.customer')->findOrFail($id);
+<<<<<<< HEAD
         $this->initMidtrans();
 
         $params = [
             'transaction_details' => [
                 'order_id' => $payment->id . '-' . time(), // WAJIB UNIK
+=======
+
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        \Midtrans\Config::$isProduction = config('midtrans.is_production');
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $payment->id . '-' . time(),
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
                 'gross_amount' => $payment->amount,
             ],
             'customer_details' => [
@@ -97,6 +143,7 @@ class PaymentController extends Controller
             ],
         ];
 
+<<<<<<< HEAD
         $snapToken = Snap::getSnapToken($params);
         return view('payments.gateway', compact('snapToken'));
     }
@@ -148,6 +195,13 @@ class PaymentController extends Controller
         return response()->json(['message' => 'Notification processed']);
     }
 
+=======
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        return view('payments.gateway', compact('snapToken'));
+    }
+
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
     public function edit(Payment $payment)
     {
         $shipments = Shipment::all();
@@ -157,13 +211,20 @@ class PaymentController extends Controller
     public function update(Request $request, Payment $payment)
     {
         $request->validate([
+<<<<<<< HEAD
             'kode_pembayaran' => 'required|string|max:255',
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
             'shipment_id' => 'required|exists:shipments,id',
             'payment_method' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0',
             'status' => 'required|string|max:255',
         ]);
 
+<<<<<<< HEAD
+=======
+        // 🔒 Validasi: Cegah kelebihan pembayaran saat update
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         $existingTotal = Payment::where('shipment_id', $request->shipment_id)
             ->where('IsDeleted', 0)
             ->where('id', '!=', $payment->id)
@@ -184,13 +245,21 @@ class PaymentController extends Controller
             $status = $request->status;
             if ($status === 'paid' && !$paid_at) {
                 $paid_at = now();
+<<<<<<< HEAD
             } elseif ($status !== 'paid') {
+=======
+            }
+            if ($status !== 'paid') {
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
                 $paid_at = null;
             }
         }
 
         $payment->update([
+<<<<<<< HEAD
             'kode_pembayaran' => $request->kode_pembayaran,
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
             'shipment_id' => $request->shipment_id,
             'payment_method' => $request->payment_method,
             'amount' => $request->amount,
@@ -205,6 +274,7 @@ class PaymentController extends Controller
 
     public function destroy(Payment $payment)
     {
+<<<<<<< HEAD
         $payment->update(['IsDeleted' => 1]);
         return redirect()->route('payments.index')->with('success', 'Payment berhasil dihapus (soft delete).');
     }
@@ -215,5 +285,49 @@ class PaymentController extends Controller
         MidtransConfig::$isProduction = config('midtrans.is_production');
         MidtransConfig::$isSanitized = true;
         MidtransConfig::$is3ds = true;
+=======
+        $payment->IsDeleted = 1;
+        $payment->save();
+
+        return redirect()->route('payments.index')->with('success', 'Payment berhasil dihapus (soft delete).');
+    }
+
+    public function notificationHandler(Request $request)
+    {
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        \Midtrans\Config::$isProduction = config('midtrans.is_production');
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+
+        $notification = new \Midtrans\Notification();
+
+        $transactionStatus = $notification->transaction_status;
+        $fraudStatus = $notification->fraud_status;
+        $orderId = $notification->order_id;
+
+        $paymentId = explode('-', $orderId)[0];
+        $payment = Payment::find($paymentId);
+
+        if (!$payment) {
+            return response()->json(['message' => 'Payment not found'], 404);
+        }
+
+        if ($transactionStatus == 'capture' || $transactionStatus == 'settlement') {
+            $payment->status = 'paid';
+            $payment->paid_at = now();
+        } elseif ($transactionStatus == 'pending') {
+            $payment->status = 'pending';
+            $payment->paid_at = null;
+        } elseif (in_array($transactionStatus, ['deny', 'cancel', 'expire'])) {
+            $payment->status = 'failed';
+            $payment->paid_at = null;
+        }
+
+        $payment->LastUpdatedBy = 'Midtrans';
+        $payment->LastUpdatedDate = now();
+        $payment->save();
+
+        return response()->json(['message' => 'Notification processed']);
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
     }
 }

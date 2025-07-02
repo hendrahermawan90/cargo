@@ -18,12 +18,15 @@
         @csrf
         @method('PUT')
 
+<<<<<<< HEAD
         <div class="form-group">
     <label for="kode_pembayaran">Kode Pembayaran</label>
     <input type="text" name="kode_pembayaran" class="form-control" value="{{ old('kode_pembayaran', $payment->kode_pembayaran) }}">
 </div>
 
 
+=======
+>>>>>>> 4450d003b90e556c54d346c935dc4d3adcd6af96
         <div class="mb-3">
             <label for="shipment_id" class="form-label">Pilih Shipment (No. Tracking)</label>
             <select name="shipment_id" class="form-select" onchange="fillAmount()" required>
