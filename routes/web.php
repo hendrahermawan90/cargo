@@ -7,6 +7,8 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController; // Tambahkan import untuk OrderController
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\PaymentController;
+
 
 // Halaman utama atau welcome
 Route::get('/', function () {
@@ -27,14 +29,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
-// Rute untuk shipments hanya bisa diakses oleh pengguna yang sudah login
+// Rute hanya bisa diakses oleh pengguna yang sudah login
 Route::middleware('auth')->group(function () {
     Route::resource('shipments', ShipmentController::class);
     Route::resource('vendors', VendorController::class);
     Route::resource('customers', CustomerController::class);
+    Route::resource('payments', PaymentController::class);
+    Route::get('/payments/{payment}/pay', [PaymentController::class, 'pay'])->name('payments.pay');
+    
 
-    // Tambahkan rute untuk order (Orders)
-    Route::resource('orders', OrderController::class); // Menambahkan resource route untuk Order
 });
 
 Route::get('auth/google', function () {
@@ -54,3 +57,6 @@ Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])
     ->name('login.google');
 
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+// Webhook dari Midtrans (tanpa middleware auth!)
+Route::post('/payments/notification', [PaymentController::class, 'notificationHandler'])->name('payments.notification');
