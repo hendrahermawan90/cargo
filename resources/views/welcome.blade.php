@@ -10,7 +10,8 @@
     <style>
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -115,115 +116,110 @@
         }
 
         body.dark-mode {
-    background-color: #121212;
-    color: #f1f1f1;
-}
+            background-color: #121212;
+            color: #f1f1f1;
+        }
 
-body.dark-mode .navbar {
-    background-color: #1f1f1f !important;
-    color: #ffffff;
-}
+        body.dark-mode .navbar {
+            background-color: #1f1f1f !important;
+            color: #ffffff;
+        }
 
-body.dark-mode .nav-link,
-body.dark-mode .navbar-brand {
-    color: #ffffff !important;
-}
+        body.dark-mode .nav-link,
+        body.dark-mode .navbar-brand {
+            color: #ffffff !important;
+        }
 
-body.dark-mode .hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-    background-size: cover;
-    background-position: center;
-    color: #ffffff;
-}
+        body.dark-mode .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
 
-body.dark-mode .feature-box {
-    background-color: #1e1e1e;
-    border-radius: 10px;
-}
+        body.dark-mode .feature-box {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+        }
 
-body.dark-mode .feature-icon {
-    color: #0d6efd;
-}
+        body.dark-mode .feature-icon {
+            color: #0d6efd;
+        }
 
-body.dark-mode .tracking-section {
-    background-color: #1a1a1a;
-}
+        body.dark-mode .tracking-section {
+            background-color: #1a1a1a;
+        }
 
-body.dark-mode .card {
-    background-color: #2a2a2a;
-    color: #ffffff;
-}
+        body.dark-mode .card {
+            background-color: #2a2a2a;
+            color: #ffffff;
+        }
 
-body.dark-mode .btn-primary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-}
+        body.dark-mode .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
 
-body.dark-mode .btn-outline-light {
-    color: #ffffff;
-    border-color: #ffffff;
-}
+        body.dark-mode .btn-outline-light {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
 
-body.dark-mode .service-card {
-    background-color: #1f1f1f;
-    color: #ffffff;
-    border: 1px solid #333;
-}
+        body.dark-mode .service-card {
+            background-color: #1f1f1f;
+            color: #ffffff;
+            border: 1px solid #333;
+        }
 
-body.dark-mode footer {
-    background-color: #1f1f1f;
-    color: #f1f1f1;
-}
+        body.dark-mode footer {
+            background-color: #1f1f1f;
+            color: #f1f1f1;
+        }
 
-body.dark-mode footer a {
-    color: #f1f1f1;
-}
+        body.dark-mode footer a {
+            color: #f1f1f1;
+        }
     </style>
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="#">Cargo Express</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#tracking">Track Shipment</a>
-                </li>
-                @if (Route::has('login'))
-                    @auth
-                        <li class="nav-item">
-                            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a href="{{ route('login') }}" class="nav-link">Login</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a href="{{ route('register') }}" class="nav-link">Register</a>
-                            </li>
-                        @endif
-                    @endauth
-                @endif
-            </ul>
+        <div class="container">
+            <a class="navbar-brand" href="#">Cargo Express</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    @if (Route::has('login'))
+                        @auth
+                            @if(Auth::user()->role === 'customer')
+                                <li class="nav-item">
+                                    <a href="#tracking" class="nav-link">Riwayat Pengiriman</a>
+                                </li>
+                            @else
+                                <li class="nav-item"><a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a></li>
+                            @endif
+                        @else
+                            <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+                            @if (Route::has('register'))
+                                <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+                            @endif
+                        @endauth
+                    @endif
+                </ul>
 
-            <!-- Dark mode switch -->
-            <div class="form-check form-switch ms-3">
-                <input class="form-check-input" type="checkbox" id="darkModeSwitch">
-                <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
+                <!-- Dark mode switch -->
+                <div class="form-check form-switch ms-3">
+                    <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                    <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -231,7 +227,7 @@ body.dark-mode footer a {
             <h1 class="display-4 mb-4">Your Trusted Shipping Partner</h1>
             <p class="lead mb-4">Fast, reliable, and secure cargo shipping services worldwide</p>
             <a href="{{ route('register') }}" class="btn btn-primary btn-lg me-3">Get Started</a>
-            <a href="#tracking" class="btn btn-outline-light btn-lg">Track Shipment</a>
+            <a href="#tracking" class="btn btn-outline-light btn-lg">Track Your Shipments</a>
         </div>
     </section>
 
@@ -268,23 +264,46 @@ body.dark-mode footer a {
         </div>
     </section>
 
-    <!-- Tracking Section -->
+    <!-- Tracking Section (Form Pelacakan Resi) -->
     <section id="tracking" class="tracking-section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h2 class="mb-4">Track Your Shipment</h2>
-                    <div class="card">
-                        <div class="card-body">
-                            <form class="d-flex">
-                                <input type="text" class="form-control form-control-lg me-2"
-                                    placeholder="Enter tracking number">
-                                <button class="btn btn-primary btn-lg">Track</button>
-                            </form>
-                        </div>
+            <div class="text-center mb-4">
+                <h2>Lacak Pengiriman Anda</h2>
+                <p class="text-muted">Masukkan nomor resi untuk melihat riwayat pengiriman barang</p>
+
+                <form method="POST" action="{{ url('/') }}" class="d-flex justify-content-center mt-4">
+                    @csrf
+                    <input type="text" name="tracking_number" class="form-control w-50 me-2" placeholder="Masukkan nomor resi" required>
+                    <button class="btn btn-primary" type="submit">Lacak</button>
+                </form>
+            </div>
+
+            @if(isset($shipment))
+                <div class="card mx-auto" style="max-width: 700px;">
+                    <div class="card-header bg-light">
+                        <strong>Resi:</strong> {{ $shipment->tracking_number }}
+                        <span class="badge bg-primary float-end">{{ ucfirst($shipment->status) }}</span>
+                    </div>
+                    <div class="card-body">
+                        @if($shipment->trackings->count())
+                            <ul class="list-group">
+                                @foreach($shipment->trackings as $log)
+                                    <li class="list-group-item">
+                                        {{ \Carbon\Carbon::parse($log->CreatedDate)->format('d-m-Y H:i') }}
+                                        - {{ $log->status }} @if($log->location) di {{ $log->location }} @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p class="text-muted">Belum ada riwayat pengiriman.</p>
+                        @endif
                     </div>
                 </div>
-            </div>
+            @elseif(session('not_found'))
+                <div class="alert alert-warning text-center mt-4">
+                    Nomor resi tidak ditemukan.
+                </div>
+            @endif
         </div>
     </section>
 
@@ -337,7 +356,7 @@ body.dark-mode footer a {
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-light">About Us</a></li>
                         <li><a href="#services" class="text-light">Services</a></li>
-                        <li><a href="#tracking" class="text-light">Track Shipment</a></li>
+                        <li><a href="#tracking" class="text-light">Shipment History</a></li>
                         <li><a href="#" class="text-light">Contact</a></li>
                     </ul>
                 </div>
@@ -360,21 +379,20 @@ body.dark-mode footer a {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    const toggleSwitch = document.getElementById('darkModeSwitch');
-    toggleSwitch.addEventListener('change', function () {
-        document.body.classList.toggle('dark-mode', this.checked);
-        localStorage.setItem('darkModeEnabled', this.checked);
-    });
+        const toggleSwitch = document.getElementById('darkModeSwitch');
+        toggleSwitch.addEventListener('change', function () {
+            document.body.classList.toggle('dark-mode', this.checked);
+            localStorage.setItem('darkModeEnabled', this.checked);
+        });
 
-    // Apply saved mode
-    window.addEventListener('DOMContentLoaded', () => {
-        const enabled = JSON.parse(localStorage.getItem('darkModeEnabled'));
-        if (enabled) {
-            document.body.classList.add('dark-mode');
-            toggleSwitch.checked = true;
-        }
-    });
-</script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const enabled = JSON.parse(localStorage.getItem('darkModeEnabled'));
+            if (enabled) {
+                document.body.classList.add('dark-mode');
+                toggleSwitch.checked = true;
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <!-- Card Detail Pengiriman -->
+            <!-- Card Detail Tracking -->
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="bi bi-truck me-2"></i>Detail Pengiriman</h5>
-                    <a href="{{ route('shipments.index') }}" class="btn btn-light btn-sm">
+                    <h5 class="mb-0"><i class="bi bi-truck me-2"></i>Detail Tracking</h5>
+                    <a href="{{ route('trackings.index') }}" class="btn btn-light btn-sm">
                         <i class="bi bi-arrow-left"></i> Kembali
                     </a>
                 </div>
@@ -19,75 +19,80 @@
                         <tbody>
                             <tr>
                                 <th class="text-muted" style="width: 30%">🔢 Tracking Number</th>
-                                <td>{{ $shipment->tracking_number }}</td>
+                                <td>{{ $tracking->shipment->tracking_number }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">👤 Customer</th>
-                                <td>{{ $shipment->customer->name ?? '-' }}</td>
+                                <td>{{ $tracking->shipment->customer->name ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📞 No. HP Customer</th>
-                                <td>{{ $shipment->customer->phone ?? '-' }}</td>
+                                <td>{{ $tracking->shipment->customer->phone ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📦 Pengirim</th>
-                                <td>{{ $shipment->sender_name }}</td>
+                                <td>{{ $tracking->shipment->sender_name }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">🏠 Alamat Pengirim</th>
-                                <td>{{ $shipment->sender_address }}</td>
+                                <td>{{ $tracking->shipment->sender_address }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">👥 Penerima</th>
-                                <td>{{ $shipment->receiver_name }}</td>
+                                <td>{{ $tracking->shipment->receiver_name }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📞 No. HP Penerima</th>
-                                <td>{{ $shipment->receiver_phone ?? '-' }}</td>
+                                <td>{{ $tracking->shipment->receiver_phone ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📍 Alamat Penerima</th>
-                                <td>{{ $shipment->receiver_address }}</td>
+                                <td>{{ $tracking->shipment->receiver_address }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">⚖️ Berat</th>
-                                <td>{{ $shipment->weight }} kg</td>
+                                <td>{{ $tracking->shipment->weight }} kg</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">💰 Harga</th>
-                                <td>Rp {{ number_format($shipment->price, 0, ',', '.') }}</td>
+                                <td>Rp {{ number_format($tracking->shipment->price, 0, ',', '.') }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📌 Status</th>
-                                <td>
-                                    @php
-                                        $badge = match(strtolower($shipment->status)) {
-                                            'pending' => 'secondary',
-                                            'in transit' => 'warning',
-                                            'delivered' => 'success',
-                                            'canceled' => 'danger',
-                                            default => 'dark'
-                                        };
-                                    @endphp
-                                    <span class="badge bg-{{ $badge }}">{{ ucfirst($shipment->status) }}</span>
-                                </td>
+                                <th class="text-muted">📌 Status Tracking Ini</th>
+                                <td>{{ ucfirst($tracking->status) }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">🗺️ Lokasi</th>
+                                <td>{{ $tracking->location ?? '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">📝 Catatan</th>
+                                <td>{{ $tracking->notes ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">👤 Dibuat Oleh</th>
-                                <td>{{ $shipment->CreatedBy ?? '-' }}</td>
+                                <td>{{ $tracking->CreatedBy ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th class="text-muted">📅 Dibuat Tanggal</th>
-                                <td>{{ $shipment->CreatedDate ?? '-' }}</td>
+                                <td>{{ $tracking->CreatedDate ? \Carbon\Carbon::parse($tracking->CreatedDate)->format('d-m-Y H:i') : '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">👤 Diperbarui Oleh</th>
-                                <td>{{ $shipment->LastUpdatedBy ?? '-' }}</td>
+                                <th class="text-muted">👤 Diupdate Oleh</th>
+                                <td>{{ $tracking->shipment->LastUpdatedBy ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📅 Diperbarui Tanggal</th>
-                                <td>{{ $shipment->LastUpdatedDate ?? '-' }}</td>
+                                <th class="text-muted">📅 Diupdate Tanggal</th>
+                                <td>{{ $tracking->shipment->LastUpdatedDate ? \Carbon\Carbon::parse($tracking->shipment->LastUpdatedDate)->format('d-m-Y H:i') : '-' }}</td>
                             </tr>
+                            @if($tracking->proof_image)
+                            <tr>
+                                <th class="text-muted">📷 Bukti Foto</th>
+                                <td>
+                                    <img src="{{ asset('storage/' . $tracking->proof_image) }}" alt="Bukti Foto" class="img-fluid rounded border" style="max-width: 300px;">
+                                </td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -99,7 +104,7 @@
                     <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Riwayat Tracking</h5>
                 </div>
                 <ul class="list-group list-group-flush">
-                    @forelse($shipment->trackings as $log)
+                    @forelse($tracking->shipment->trackings as $log)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div>
                                 <strong>{{ \Carbon\Carbon::parse($log->CreatedDate)->format('d-m-Y H:i') }}</strong><br>

@@ -9,11 +9,25 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $payments = Payment::with('shipment')->latest('CreatedDate')->paginate(10);
+        $query = Payment::with('shipment');
+
+        // Filter tanggal jika tersedia
+        if ($request->filled('start_date')) {
+            $query->whereDate('CreatedDate', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('CreatedDate', '<=', $request->end_date);
+        }
+
+        // Pagination dan tetap menyimpan query filter
+        $payments = $query->latest('CreatedDate')->paginate(10)->appends($request->all());
+
         return view('payments.index', compact('payments'));
     }
+
 
     public function create()
     {
@@ -34,7 +48,6 @@ class PaymentController extends Controller
         return view('payments.show', compact('payment'));
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
@@ -43,7 +56,6 @@ class PaymentController extends Controller
             'amount' => 'required|numeric|min:0',
         ]);
 
-        // 🔒 Validasi: Cegah kelebihan pembayaran
         $existingTotal = Payment::where('shipment_id', $request->shipment_id)
             ->where('IsDeleted', 0)
             ->sum('amount');
@@ -75,6 +87,13 @@ class PaymentController extends Controller
         ]);
 
         $payment->save();
+
+        // ✅ Update shipment status ke 'dikemas' jika payment berhasil
+        if ($payment->status === 'paid' && $payment->shipment && $payment->shipment->status === 'pending') {
+            $payment->shipment->update([
+                'status' => 'dikemas'
+            ]);
+        }
 
         if (strtolower($request->payment_method) === 'transfer') {
             return redirect()->route('payments.pay', $payment->id);
@@ -123,7 +142,6 @@ class PaymentController extends Controller
             'status' => 'required|string|max:255',
         ]);
 
-        // 🔒 Validasi: Cegah kelebihan pembayaran saat update
         $existingTotal = Payment::where('shipment_id', $request->shipment_id)
             ->where('IsDeleted', 0)
             ->where('id', '!=', $payment->id)
@@ -159,6 +177,13 @@ class PaymentController extends Controller
             'LastUpdatedBy' => Auth::user()->name ?? 'system',
             'LastUpdatedDate' => now(),
         ]);
+
+        // ✅ Update shipment status jika belum dikemas
+        if ($status === 'paid' && $payment->shipment && $payment->shipment->status === 'pending') {
+            $payment->shipment->update([
+                'status' => 'dikemas'
+            ]);
+        }
 
         return redirect()->route('payments.index')->with('success', 'Payment berhasil diupdate.');
     }
@@ -205,6 +230,13 @@ class PaymentController extends Controller
         $payment->LastUpdatedBy = 'Midtrans';
         $payment->LastUpdatedDate = now();
         $payment->save();
+
+        // ✅ Update shipment status ke 'dikemas' jika belum dikemas
+        if ($payment->status === 'paid' && $payment->shipment && $payment->shipment->status === 'pending') {
+            $payment->shipment->update([
+                'status' => 'dikemas'
+            ]);
+        }
 
         return response()->json(['message' => 'Notification processed']);
     }

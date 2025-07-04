@@ -53,9 +53,11 @@
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select name="status" class="form-select" required>
-                <option value="pending" {{ $shipment->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="in_transit" {{ $shipment->status == 'in_transit' ? 'selected' : '' }}>In Transit</option>
-                <option value="delivered" {{ $shipment->status == 'delivered' ? 'selected' : '' }}>Delivered</option>
+                @foreach(\App\Models\Shipment::statusOptions() as $value => $label)
+                    <option value="{{ $value }}" {{ $shipment->status === $value ? 'selected' : '' }}>
+                        {{ $label }}
+                    </option>
+                @endforeach
             </select>
         </div>
 

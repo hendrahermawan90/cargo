@@ -150,15 +150,15 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="/tracking">
-            <i class="fas fa-truck"></i> Tracking
+        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="/trackings">
+            <i class="fas fa-truck"></i> Trackings
         </a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link {{ request()->is('vendors*') ? 'active' : '' }}" href="/vendors">
             <i class="fas fa-store"></i> Vendors
         </a>
-    </li>
+    </li> -->
     <li class="nav-item">
         <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="/reports">
             <i class="fas fa-file-invoice"></i> Reports

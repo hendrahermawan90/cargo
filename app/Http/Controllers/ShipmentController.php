@@ -8,24 +8,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\Rule;
 
 class ShipmentController extends Controller
 {
     public function index(Request $request)
     {
+        $query = Shipment::with('customer');
+
         if ($request->query('include_deleted') == 'true') {
-            $shipments = Shipment::withoutGlobalScope('not_deleted')
-                ->with('customer')
-                ->latest('CreatedDate')
-                ->paginate(10);
-        } else {
-            $shipments = Shipment::with('customer')
-                ->latest('CreatedDate')
-                ->paginate(10);
+            $query = $query->withoutGlobalScope('not_deleted');
         }
+
+        // Tambahan filter berdasarkan tanggal
+        if ($request->filled('start_date')) {
+            $query->whereDate('CreatedDate', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('CreatedDate', '<=', $request->end_date);
+        }
+
+        $shipments = $query->latest('CreatedDate')->paginate(10)->appends($request->all());
 
         return view('shipments.index', compact('shipments'));
     }
+
 
     public function create()
     {
@@ -86,14 +94,14 @@ class ShipmentController extends Controller
             'sender_address' => $request->sender_address,
             'receiver_name' => $request->receiver_name,
             'receiver_address' => $request->receiver_address,
-            'receiver_phone' => $request->receiver_phone, // ✅ Tambahan penting
+            'receiver_phone' => $request->receiver_phone,
             'weight' => $request->weight,
         ]);
 
         $shipment->distance_km = $distance;
         $shipment->price = $price;
         $shipment->tracking_number = 'SHP-' . strtoupper(Str::random(10));
-        $shipment->status = 'pending';
+        $shipment->status = Shipment::STATUS_PENDING;
         $shipment->CreatedBy = Auth::user()->name ?? 'system';
         $shipment->CreatedDate = now();
         $shipment->IsDeleted = 0;
@@ -124,9 +132,12 @@ class ShipmentController extends Controller
             'sender_address' => 'required|string',
             'receiver_name' => 'required|string|max:255',
             'receiver_address' => 'required|string',
-            'receiver_phone' => 'required|string|max:20', // ✅ tambahkan validasi update
+            'receiver_phone' => 'required|string|max:20',
             'weight' => 'required|numeric|min:0.1',
-            'status' => 'required|string|max:255',
+            'status' => [
+                'required',
+                Rule::in(array_keys(Shipment::statusOptions())),
+            ],
         ]);
 
         $shipment->update([
@@ -135,7 +146,7 @@ class ShipmentController extends Controller
             'sender_address' => $request->sender_address,
             'receiver_name' => $request->receiver_name,
             'receiver_address' => $request->receiver_address,
-            'receiver_phone' => $request->receiver_phone, // ✅ tambahkan update
+            'receiver_phone' => $request->receiver_phone,
             'weight' => $request->weight,
             'status' => $request->status,
         ]);
