@@ -135,30 +135,30 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('shipments*') ? 'active' : '' }}" href="/shipments">
-            <i class="fas fa-box"></i> Shipments
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="/tracking">
-            <i class="fas fa-truck"></i> Tracking
-        </a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link {{ request()->is('customers*') ? 'active' : '' }}" href="/customers">
             <i class="fas fa-users"></i> Customers
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('orders*') ? 'active' : '' }}" href="/orders">
-            <i class="fas fa-file-alt"></i> Orders
+        <a class="nav-link {{ request()->is('shipments*') ? 'active' : '' }}" href="/shipments">
+            <i class="fas fa-box"></i> Shipments
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link {{ request()->is('payments*') ? 'active' : '' }}" href="/payments">
+            <i class="fas fa-users"></i> Payments
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->is('tracking*') ? 'active' : '' }}" href="/trackings">
+            <i class="fas fa-truck"></i> Trackings
+        </a>
+    </li>
+    <!-- <li class="nav-item">
         <a class="nav-link {{ request()->is('vendors*') ? 'active' : '' }}" href="/vendors">
             <i class="fas fa-store"></i> Vendors
         </a>
-    </li>
+    </li> -->
     <li class="nav-item">
         <a class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" href="/reports">
             <i class="fas fa-file-invoice"></i> Reports

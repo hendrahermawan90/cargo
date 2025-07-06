@@ -22,6 +22,11 @@ class Customer extends Model
         'LastUpdatedBy', 
         'LastUpdatedDate'
     ];
+    public function shipments()
+        {
+            return $this->hasMany(Shipment::class);
+        }
+
 
      // Menggunakan properti timestamps jika kamu ingin menggunakan created_at dan updated_at
      public $timestamps = false; // Menggunakan Custom DateTime Fields
