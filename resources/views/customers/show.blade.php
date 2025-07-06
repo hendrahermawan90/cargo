@@ -18,7 +18,7 @@
                     <table class="table table-borderless mb-0">
                         <tbody>
                             <tr>
-                                <th class="text-muted" style="width: 30%">👤 Name</th>
+                                <th class="text-muted" style="width: 30%">👤 Nama</th>
                                 <td>{{ $customer->name }}</td>
                             </tr>
                             <tr>
@@ -26,11 +26,11 @@
                                 <td>{{ $customer->email }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📱 Phone</th>
+                                <th class="text-muted">📱 Telepon</th>
                                 <td>{{ $customer->phone ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">🏠 Address</th>
+                                <th class="text-muted">🏠 Alamat</th>
                                 <td>{{ $customer->address ?? '-' }}</td>
                             </tr>
                             <tr>
@@ -52,19 +52,19 @@
                                 <td>{{ $customer->IsDeleted == 1 ? 'Yes' : 'No' }}</td>
                             </tr> -->
                             <tr>
-                                <th class="text-muted">👤 Created By</th>
+                                <th class="text-muted">👤 Dibuat Oleh</th>
                                 <td>{{ $customer->CreatedBy }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📅 Created Date</th>
+                                <th class="text-muted">📅 Dibuat Tanggal</th>
                                 <td>{{ $customer->CreatedDate }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">👤 Last Updated By</th>
+                                <th class="text-muted">👤 Diubah Oleh</th>
                                 <td>{{ $customer->LastUpdatedBy }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📅 Last Updated Date</th>
+                                <th class="text-muted">📅 Diubah Tanggal</th>
                                 <td>{{ $customer->LastUpdatedDate }}</td>
                             </tr>
                         </tbody>

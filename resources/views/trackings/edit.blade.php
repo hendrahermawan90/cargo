@@ -20,7 +20,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="status" class="form-label">Status Pengiriman</label>
+            <label for="status" class="form-label">Status</label>
             <select name="status" id="status" class="form-select" required>
                 @foreach($statusOptions as $value => $label)
                     <option value="{{ $value }}" {{ $tracking->status == $value ? 'selected' : '' }}>
@@ -48,8 +48,8 @@
             @endif
         </div>
 
-        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-        <a href="{{ route('trackings.index') }}" class="btn btn-secondary">Batal</a>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ route('trackings.index') }}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 @endsection

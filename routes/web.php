@@ -11,6 +11,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResiController;
 
 
 // Halaman utama (welcome) dengan histori pengiriman untuk customer
@@ -54,5 +55,7 @@ Route::post(
     '/payments/notification',
     [PaymentController::class, 'notificationHandler']
 )->name('payments.notification');
+
+Route::get('/resi/{shipment}', [ResiController::class, 'cetak'])->name('resi.cetak');
 
 // Tidak perlu route tambahan untuk /track, karena sudah ditangani di HomeController@index

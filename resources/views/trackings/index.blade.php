@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4>
-                        Daftar Tracking
+                        TRACKING
                         <a href="#" onclick="printTable()" class="btn btn-secondary float-end ms-2">Print</a>
-                        <a href="{{ route('trackings.create') }}" class="btn btn-primary float-end">Tambah Tracking</a>
+                        <a href="{{ route('trackings.create') }}" class="btn btn-primary float-end">Tambah</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -49,10 +49,10 @@
                                     <th>Tujuan</th>
                                     <th>Status</th>
                                     <th>Lokasi</th>
-                                    <th>Created By</th>
-                                    <th>Created Date</th>
-                                    <th>Updated By</th>
-                                    <th>Updated Date</th>
+                                    <th>Dibuat Oleh</th>
+                                    <th>Dibuat Tanggal</th>
+                                    <th>Diubah Oleh</th>
+                                    <th>Diubah Tanggal</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,7 +80,7 @@
                                         <td>{{ $tracking->location ?? '-' }}</td>
                                         <td>{{ $tracking->CreatedBy ?? '-' }}</td>
                                         <td>{{ \Carbon\Carbon::parse($tracking->CreatedDate)->format('d-m-Y H:i') }}</td>
-                                        <td>{{ optional($tracking->shipment)->LastUpdatedBy ?? '-' }}</td>
+                                        <!-- <td>{{ optional($tracking->shipment)->LastUpdatedBy ?? '-' }}</td> -->
                                         <td>{{ $tracking->shipment->LastUpdatedBy ?? '-' }}</td>
                                         <td>
                                             @if($tracking->shipment && $tracking->shipment->LastUpdatedDate)

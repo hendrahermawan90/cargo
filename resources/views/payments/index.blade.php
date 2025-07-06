@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4>
-                        Daftar Pembayaran
+                        PAYMENTS
                         <a href="#" onclick="printTable()" class="btn btn-secondary float-end ms-2">Print</a>
-                        <a href="{{ route('payments.create') }}" class="btn btn-primary float-end">Tambah Pembayaran</a>
+                        <a href="{{ route('payments.create') }}" class="btn btn-primary float-end">Tambah</a>
                     </h4>
                 </div>
 
@@ -40,10 +40,10 @@
                                 <tr>
                                     <th class="no-print">Aksi</th>
                                     <th>No</th>
-                                    <th>No. Tracking</th>
-                                    <th>Nama Penerima</th>
+                                    <th>No. Resi</th>
+                                    <th>Penerima</th>
                                     <th>Alamat Penerima</th>
-                                    <th>Nama Pengirim</th>
+                                    <th>Pengirim</th>
                                     <th>Alamat Pengirim</th>
                                     <th>Metode</th>
                                     <th>Jumlah (Rp)</th>
@@ -71,6 +71,13 @@
                                                     <i class="bi bi-credit-card"></i> Bayar
                                                 </a>
                                             @endif
+                                            @if($payment->shipment)
+                                                <a href="{{ route('resi.cetak', $payment->shipment->id) }}" target="_blank"
+                                                    class="btn btn-outline-dark btn-sm mt-1" title="Cetak Resi">
+                                                    <i class="bi bi-printer"></i>
+                                                </a>
+                                            @endif
+
                                         </td>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $payment->shipment?->tracking_number ?? '-' }}</td>

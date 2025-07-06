@@ -18,7 +18,7 @@
                     <table class="table table-borderless mb-0">
                         <tbody>
                             <tr>
-                                <th class="text-muted" style="width: 30%">🔢 Tracking Number</th>
+                                <th class="text-muted" style="width: 30%">🔢 No. Resi</th>
                                 <td>{{ $tracking->shipment->tracking_number }}</td>
                             </tr>
                             <tr>
@@ -78,11 +78,11 @@
                                 <td>{{ $tracking->CreatedDate ? \Carbon\Carbon::parse($tracking->CreatedDate)->format('d-m-Y H:i') : '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">👤 Diupdate Oleh</th>
+                                <th class="text-muted">👤 Diubah Oleh</th>
                                 <td>{{ $tracking->shipment->LastUpdatedBy ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📅 Diupdate Tanggal</th>
+                                <th class="text-muted">📅 Diubah Tanggal</th>
                                 <td>{{ $tracking->shipment->LastUpdatedDate ? \Carbon\Carbon::parse($tracking->shipment->LastUpdatedDate)->format('d-m-Y H:i') : '-' }}</td>
                             </tr>
                             @if($tracking->proof_image)

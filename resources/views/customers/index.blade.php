@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4>
-                        Customers
+                        CUSTOMERS
                         <a href="#" onclick="printTable()" class="btn btn-secondary float-end me-2">Print</a>
-                        <a href="{{ route('customers.create') }}" class="btn btn-primary float-end me-2">Add New Customer</a>
+                        <a href="{{ route('customers.create') }}" class="btn btn-primary float-end me-2">Tambah</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -22,17 +22,17 @@
                         <table class="table table-bordered table-sm align-middle text-nowrap">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th class="no-print">Actions</th>
+                                    <th class="no-print">Aksi</th>
                                     <th>No</th>
-                                    <th>Name</th>
+                                    <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
+                                    <th>Telepon</th>
+                                    <th>Alamat</th>
                                     <th>Status</th>  
-                                    <th>Created By</th>
-                                    <th>Created Date</th>
-                                    <th>Update By</th>
-                                    <th>Last Update Date</th> 
+                                    <th>Dibuat Oleh</th>
+                                    <th>Dibuat Tanggal</th>
+                                    <th>Diubah Oleh</th>
+                                    <th>Diubah Tanggal</th> 
                                 </tr>
                             </thead>
                             <tbody>

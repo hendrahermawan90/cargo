@@ -18,7 +18,7 @@
                     <table class="table table-borderless mb-0">
                         <tbody>
                             <tr>
-                                <th class="text-muted" style="width: 30%">🔢 Tracking Number</th>
+                                <th class="text-muted" style="width: 30%">🔢 No. Resi</th>
                                 <td>{{ $shipment->tracking_number }}</td>
                             </tr>
                             <tr>
@@ -81,11 +81,11 @@
                                 <td>{{ $shipment->CreatedDate ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">👤 Diperbarui Oleh</th>
+                                <th class="text-muted">👤 Diubah Oleh</th>
                                 <td>{{ $shipment->LastUpdatedBy ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📅 Diperbarui Tanggal</th>
+                                <th class="text-muted">📅 Diubah Tanggal</th>
                                 <td>{{ $shipment->LastUpdatedDate ?? '-' }}</td>
                             </tr>
                         </tbody>

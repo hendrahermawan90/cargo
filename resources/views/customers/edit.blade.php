@@ -25,7 +25,7 @@
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Nama</label>
                                 <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $customer->name) }}" required>
                             </div>
 
@@ -35,12 +35,12 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Phone</label>
+                                <label for="phone" class="form-label">Telepon</label>
                                 <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone', $customer->phone) }}">
                             </div>
 
                             <div class="mb-3">
-                                <label for="address" class="form-label">Address</label>
+                                <label for="address" class="form-label">Alamat</label>
                                 <input type="text" name="address" class="form-control" id="address" value="{{ old('address', $customer->address) }}">
                             </div>
 

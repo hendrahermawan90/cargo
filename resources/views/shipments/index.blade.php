@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4>
-                        Daftar Pengiriman
+                        SHIPMENTS
                         <a href="#" onclick="printTable()" class="btn btn-secondary float-end ms-2">Print</a>
-                        <a href="{{ route('shipments.create') }}" class="btn btn-primary float-end">Tambah Pengiriman</a>
+                        <a href="{{ route('shipments.create') }}" class="btn btn-primary float-end">Tambah</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -42,14 +42,16 @@
                                     <th class="no-print">Aksi</th>
                                     <th>No</th>
                                     <th>No. Resi</th>
+                                    <!-- <th>Customer</th> -->
                                     <th>Pengirim</th>
                                     <th>Penerima</th>
-                                    <th>Customer</th>
                                     <th>Berat (kg)</th>
                                     <th>Status</th>
                                     <th>Harga</th>
                                     <th>Dibuat Oleh</th>
                                     <th>Dibuat Tanggal</th>
+                                    <th>Diubah Oleh</th>
+                                    <th>Diubah Tanggal</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,14 +71,16 @@
                                         </td>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $shipment->tracking_number }}</td>
+                                        <!-- <td>{{ $shipment->customer->name ?? '-' }}</td> -->
                                         <td>{{ $shipment->sender_name }}</td>
                                         <td>{{ $shipment->receiver_name }}</td>
-                                        <td>{{ $shipment->customer->name ?? '-' }}</td>
                                         <td>{{ $shipment->weight }}</td>
                                         <td>{{ ucfirst($shipment->status) }}</td>
                                         <td>Rp {{ number_format($shipment->price, 0, ',', '.') }}</td>
                                         <td>{{ $shipment->CreatedBy ?? '-' }}</td>
                                         <td>{{ $shipment->CreatedDate ? \Carbon\Carbon::parse($shipment->CreatedDate)->format('d-m-Y H:i') : '-' }}</td>
+                                        <td>{{ $shipment->LastUpdatedBy ?? '-' }}</td>
+                                        <td>{{ $shipment->LastUpdatedDate ? \Carbon\Carbon::parse($shipment->LastUpdatedDate)->format('d-m-Y H:i') : '-' }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
