@@ -84,6 +84,10 @@ class Shipment extends Model
         return $this->hasMany(Tracking::class);
     }
 
-    
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'shipment_id', 'id')->where('IsDeleted', 0);
+    }
+
 
 }

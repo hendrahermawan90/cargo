@@ -8,7 +8,7 @@
         @csrf
 
         <div class="mb-3">
-            <label for="customer_id" class="form-label">Customer Pengirim</label>
+            <label for="customer_id" class="form-label">Customer</label>
             <select name="customer_id" class="form-select" required>
                 <option value="">Pilih Customer</option>
                 @foreach($customers as $customer)

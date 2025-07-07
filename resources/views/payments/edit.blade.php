@@ -19,7 +19,7 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label for="shipment_id" class="form-label">Pilih Shipment (No. Tracking)</label>
+            <label for="shipment_id" class="form-label">Pilih Shipment (No. Resi)</label>
             <select name="shipment_id" class="form-select" onchange="fillAmount()" required>
                 <option value="">-- Pilih Shipment --</option>
                 @foreach($shipments as $shipment)

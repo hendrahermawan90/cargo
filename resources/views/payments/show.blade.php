@@ -18,7 +18,7 @@
                     <table class="table table-borderless mb-0">
                         <tbody>
                             <tr>
-                                <th class="text-muted" style="width: 30%">🔢 Tracking Number</th>
+                                <th class="text-muted" style="width: 30%">🔢 No. Resi</th>
                                 <td>{{ $payment->shipment?->tracking_number ?? '-' }}</td>
                             </tr>
                             <tr>
@@ -30,7 +30,7 @@
                                 <td>{{ $payment->shipment?->customer?->phone ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📦 Nama Pengirim</th>
+                                <th class="text-muted">📦 Pengirim</th>
                                 <td>{{ $payment->shipment?->sender_name ?? '-' }}</td>
                             </tr>
                             <tr>
@@ -38,7 +38,7 @@
                                 <td>{{ $payment->shipment?->sender_address ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">👥 Nama Penerima</th>
+                                <th class="text-muted">👥 Penerima</th>
                                 <td>{{ $payment->shipment?->receiver_name ?? '-' }}</td>
                             </tr>
                             <tr>
@@ -80,11 +80,11 @@
                                 <td>{{ $payment->CreatedDate ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">👤 Diperbarui Oleh</th>
+                                <th class="text-muted">👤 Diubah Oleh</th>
                                 <td>{{ $payment->LastUpdatedBy ?? '-' }}</td>
                             </tr>
                             <tr>
-                                <th class="text-muted">📅 Diperbarui Tanggal</th>
+                                <th class="text-muted">📅 Diubah Tanggal</th>
                                 <td>{{ $payment->LastUpdatedDate ?? '-' }}</td>
                             </tr>
                         </tbody>

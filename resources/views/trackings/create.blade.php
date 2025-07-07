@@ -21,7 +21,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="status" class="form-label">Status Pengiriman</label>
+            <label for="status" class="form-label">Status</label>
             <select name="status" id="status" class="form-select" required>
                 <option value="">-- Pilih Status --</option>
                 @foreach($statusOptions as $value => $label)
@@ -51,7 +51,7 @@
             @error('proof_image') <div class="text-danger">{{ $message }}</div> @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Simpan Tracking</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="{{ route('trackings.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
